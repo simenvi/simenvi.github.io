@@ -307,10 +307,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleThumbnails() {
         thumbnailSidebar.classList.toggle('open');
         document.body.classList.toggle('thumbnails-open'); // 為了讓主容器移動
-        if (thumbnailSidebar.classList.contains('open')) {
-            toggleThumbnailsBtn.innerHTML = '<img src="../images/presentation.svg" width="24" height="24">';
+        if (thumbnailSidebar.classList.contains('open')) {            
+            toggleThumbnailsBtn.setAttribute('title',"離開簡報瀏覽");
+            toggleThumbnailsBtn.innerHTML = '<img src="../images/presentation-off.svg" width="24" height="24">';
             updateActiveThumbnail(); // 確保縮圖區塊打開時，當前頁的縮圖是活躍的
-        } else {
+        } else {            
+            toggleThumbnailsBtn.setAttribute('title',"簡報瀏覽");
             toggleThumbnailsBtn.innerHTML = '<img src="../images/presentation.svg" width="24" height="24">';
         }
     }
