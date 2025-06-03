@@ -24,11 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const audioPrefix = './audio/audio';
     const audioExtension = '.mp3';
 
-    // *** 新增一個集合，用於存放沒有音訊的投影片索引 ***
-    // 這裡需要你手動維護這個列表，或者在生成時自動檢查
-    // 假設第 2 頁和第 4 頁沒有音訊
-    const slidesWithoutAudio = new Set([2, 4]); // 示例：你可以根據實際情況修改此處
-
     let currentSlideIndex = 1; // 從第一張投影片開始 (索引從 1 開始)
     let isPlaying = false;
     let currentVolume = volumeBar.value / 100; // 新增：初始化 currentVolume 為音量條的初始值
@@ -82,31 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // 載入投影片圖片
         slideViewer.innerHTML = `<img src="${slideImagePrefix}${currentSlideIndex}${slideImageExtension}" alt="Slide ${currentSlideIndex}">`;
 
+        // 載入對應的音訊檔案
+        presentationAudio.src = `${audioPrefix}${currentSlideIndex}${audioExtension}`;
+        presentationAudio.load(); // 重新載入音訊
+        
         // 更新投影片資訊
         currentSlideInfo.textContent = `第 ${currentSlideIndex} / ${totalSlides} 頁`;
 
         // 更新縮圖活躍狀態
         updateActiveThumbnail();
 
-        // **主要更改點：在載入音訊之前檢查 slidesWithoutAudio 列表**
-        if (slidesWithoutAudio.has(currentSlideIndex)) {
-            // 這頁沒有音訊，直接禁用播放按鈕
-            presentationAudio.src = ''; // 清空 src，停止任何舊的載入
-            presentationAudio.pause(); // 停止播放
-            isPlaying = false;
-            updatePlayButtonState(false);
-            durationSpan.textContent = '0:00';
-            currentTimeSpan.textContent = '0:00';
-            seekBar.value = 0;
-            seekBar.max = 0;
-            console.log(`第 ${currentSlideIndex} 頁沒有音訊。`);
-            return; // 結束函數，不再嘗試載入音訊
-        }
-
-        // 如果有音訊，才嘗試載入和播放
-        presentationAudio.src = `${audioPrefix}${currentSlideIndex}${audioExtension}`;
-        presentationAudio.load(); // 重新載入音訊      
-        
         // 每次切換投影片時重置播放狀態
         playPauseBtn.setAttribute('title', '播放');
         playPauseBtn.innerHTML = '<img src="../images/play.svg" width="24" height="24">';        
@@ -126,21 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 新增的自動播放邏輯 ---
         // 嘗試播放音訊。如果音訊載入成功（loadedmetadata），它會自動播放
         // 如果載入失敗（error），它會被禁用
-        presentationAudio.play().then(() => {
+        presentationAudio.play() .then(() => {
                 // 自動播放成功
                 isPlaying = true;
                 updatePlayButtonState(true); // 啟用按鈕並更新為「暫停」
         }).catch(e => {
                 // 自動播放被阻止或音訊不存在/載入失敗
-                console.warn(`自動播放音訊 ${presentationAudio.src} 失敗或被阻止:`, e);
+                console.log(`嘗試自動播放音訊 ${presentationAudio.src} 失敗:`, e);
                 isPlaying = false; // 確保播放狀態為 false
-                // 如果音訊本身有錯誤 (例如 404 已觸發 error 事件)，則按鈕應為 disabled
-                // 否則，如果只是政策阻止，按鈕應為 enabled 讓使用者手動點擊
-                if (presentationAudio.error && presentationAudio.error.code !== 0) { // 檢查非 MEDIA_ERR_ABORTED
-                    updatePlayButtonState(false); // 保持按鈕禁用
-                } else {
-                    updatePlayButtonState(true); // 如果是政策阻止，按鈕應可手動點擊
-                }
+                updatePlayButtonState(false); // 禁用按鈕
          });
         // --- 結束新增的自動播放邏輯 ---
     }
@@ -199,14 +173,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         }
-        console.error(`音訊載入錯誤 for ${presentationAudio.src}: ${errorMessage}`, e);
+        console.log(`音訊載入錯誤 for ${presentationAudio.src}: ${errorMessage}`, e);
         
         // **核心改動：音訊載入失敗，明確禁用播放按鈕**
         isPlaying = false; // 確保播放狀態為 false
         updatePlayButtonState(false);
         durationSpan.textContent = '0:00'; // 清空時長顯示
-        currentTimeSpan.textContent = '0:00';
-        seekBar.value = 0;
         seekBar.max = 0; // 重置進度條最大值
     });
 
@@ -318,13 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
             img.alt = `Slide ${i} Thumbnail`;
 
             const span = document.createElement('span');
-            // *** 縮圖頁碼顯示新增「無音訊」提示 ***
-            if (slidesWithoutAudio.has(i)) {
-                span.textContent = `第 ${i} 頁 (無音訊)`;
-                thumbItem.classList.add('no-audio'); // 為無音訊縮圖新增 CSS Class
-            } else {
-                span.textContent = `第 ${i} 頁`;
-            }
+            span.textContent = `第 ${i} 頁`;
 
             thumbItem.appendChild(img);
             thumbItem.appendChild(span);
@@ -343,10 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('thumbnails-open'); // 為了讓主容器移動
         if (thumbnailSidebar.classList.contains('open')) {
             toggleThumbnailsBtn.innerHTML = '<img src="../images/presentation.svg" width="24" height="24">';
-            toggleThumbnailsBtn.textContent = '隱藏簡報瀏覽';
             updateActiveThumbnail(); // 確保縮圖區塊打開時，當前頁的縮圖是活躍的
         } else {
-            toggleThumbnailsBtn.textContent = '簡報瀏覽';
             toggleThumbnailsBtn.innerHTML = '<img src="../images/presentation.svg" width="24" height="24">';
         }
     }
