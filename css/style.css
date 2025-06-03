@@ -307,11 +307,23 @@ body.thumbnails-open .presentation-container {
         padding: 5px 8px; /* 縮小按鈕內邊距 */
     }
 
+    /* --- 智慧型手機螢幕時的縮圖側邊欄和按鈕處理 --- */
+    /* 隱藏縮圖切換按鈕 */
+    #toggle-thumbnails-btn {
+        display: none;
+    }
+
     /* 行動裝置上縮圖側邊欄的調整 */
     .thumbnail-sidebar {
-        width: 100vw; /* 佔滿整個寬度 */
-        right: -100vw; /* 隱藏在螢幕外 */
-        padding-top: 50px; /* 為頂部按鈕留空間 */
+        display: none; /* 完全隱藏 */
+        /* 或者，如果你希望它只是不顯示，但還在 DOM 中，可以這樣： */
+        /* visibility: hidden; */
+        /* opacity: 0; */
+        /* transition: none; */ /* 移除過渡效果 */
+        /* *********** */
+        /* width: 100vw; 佔滿整個寬度 */
+        /* right: -100vw; 隱藏在螢幕外 */
+        /* padding-top: 50px; 為頂部按鈕留空間 */
     }
 
     .thumbnail-sidebar.open {
@@ -320,6 +332,6 @@ body.thumbnails-open .presentation-container {
 
     body.thumbnails-open .presentation-container {
         margin-right: 0; /* 行動裝置上不移動主簡報區 */
-        transform: translateX(-100vw); /* 而是將主簡報區推到左邊，實現全覆蓋 */
+        transform: none; /*  translateX(-100vw)而是將主簡報區推到左邊，實現全覆蓋 */
     }
 }
