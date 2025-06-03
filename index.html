@@ -1,39 +1,1497 @@
-﻿<!DOCTYPE html>
-<html xml:lang="zh-tw" lang="zh-tw">
 
+<!DOCTYPE html>
+<html lang="zh_tw" class="orbit">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
-    <title>運輸系統調適措施案例查詢系統</title>
-    <style type="text/css">
-        html,
-        body {
-            overflow: auto;
-            margin: 0px;
-            padding: 0px;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        iframe {
-            display: block;
-            width: 100%;
-            height: 100%;
-            border: none;
-            overflow-y: auto;
-            overflow-x: hidden;
-            margin: 0 auto;
-            padding: 0px;
-        }
-    </style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/frontend_extend-32175b7dc53a54d0b7c9958bede3d8c4bfedeb3eb32584dd0cf189e6bc8b7d99.css">
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/front_end-c68018fd9a6aceb4059c7815e101465ef23be8c2adce9cace6aefc2882108744.css">
+<meta property="og:description" content="運輸管理機關(構)因應氣候變遷調適系列課程--課程講義、教材影片
+
+為因應氣候變遷帶來的挑戰，提升政府及相關單位的調適專業能力，本所113年規劃舉辦一系列氣候變遷調適課程，除基礎類的政策和科學知識外，也包含工具、指引類課程，以協助運輸人員執行調適相關作業。
+
+課程相關講義資料僅提供交通部暨部屬機關(構)及相關運輸管理機關(構)內部學習參考。
+
+各場次課程講義、各場次有聲教材影片
+
+
+">
+<meta property="og:type" content="Article">
+<meta property="og:image" content="https://www.iot.gov.tw/uploads/site/site_logo/658286a13673766169dd5812/IOTlogo.png">
+<meta property="og:image:width" content="269">
+<meta property="og:image:height" content="66">
+<meta property="og:title" content="本所軟體申請">
+<meta property="og:site_name" content="交通部運輸研究所 Institute of Transportation, MOTC">
+<meta property="og:url" content="/zh_tw/archive/pub/softwareapp/?wiki=57084081">
+  <script src="https://www.iot.gov.tw/assets/jquery-2a83d06853bd343c7bfc2e5d4539814cfa934676e2948ed348311435eca862f5.js"></script>
+<script src="https://www.iot.gov.tw/assets/jquery_prefix-5c5a0bbb9dfff7d410703a0565bc948dca28ec736d1a0e725050111c330805d3.js"></script>
+<script src="https://www.iot.gov.tw/assets/jquery_ujs_custom-a76b6cd8d652c18d24ed38d1f7a4d18f51d1f594a88a0f2ade82afec33966e2b.js"></script>
+<script src="https://www.iot.gov.tw/assets/jquery.cycle2.min-ec60b272289a05b845d7613d074237d008c08a069dc283c2e4c62dfc513242db.js"></script>
+<script src="https://www.iot.gov.tw/assets/jquery.cycle2.carousel.min-3d226d0713bcf58909be7c7e753fa1eef4409eee278299adfe70ff4ea646d65f.js"></script>
+<script src="https://www.iot.gov.tw/assets/jquery.cycle2.scrollVert.min-ce8da4c3f5e336753d998c9f02e64cc8b7e3977f5f6988133faf24a44c90b427.js"></script>
+<script src="https://www.iot.gov.tw/assets/jquery.cycle2.tile.min-83b4b0c4c2604b9c9acb20199a740f4b9e83c227ae46c1a430aa67bf97ff5457.js"></script>
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/datatables.min-7446416dca719e42fb55ff5fbf69879ccebe1ab56c6bb6833e2db781eccfddf9.css">
+<script src="https://www.iot.gov.tw/assets/datatables.min-598993c579b423583458a17773ed1e86103dc54e60eae7ab6c27b426af16df6f.js"></script>
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="MD/dXi4TOJfCYPtsmZtaO6i/lb2DgSwc+fU8D7ftJInvv69ZCH/SCUC66zoWUKMmi38Zvrii2jRv10IMLyl7xw==">
+<script>
+    $.fn.dataTable.defaults.initComplete = function(settings) {
+        $(this).find('td:first-child').trigger('click');
+    };
+</script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="https://www.iot.gov.tw/uploads/site/favicon/658286a13673766169dd5812/logo2.png">
+  <title>本所軟體申請 | 交通部運輸研究所 Institute of Transportation, MOTC</title>
+  <link rel="stylesheet" media="all" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/bootstrap/bootstrap.min-c36b0860fa3ccf6a898fa1a436dc802cf6333c72dd02932473d4dd9cb6739974.css">
+  <link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/template/template-7156584c829491a86029afd9753d9f88675642aaf7f1c0e41aadcbc0ba6cbe01.css">
+  <link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/template/jquery.scrolling-tabs.min-0aaa5bfc7b51e5bacb1b208e1bc8d8cf1b8daba5c234626bc7fda4be4effb5df.css">
+  <link rel="stylesheet" media="print" type="text/css" href="https://www.iot.gov.tw/assets/template/print.css">
+  <script src="https://www.iot.gov.tw/assets/plugin/modernizr-d5770395993b83f1cd01c625a62f0cc2a8f2536f7288ef3a45f2863f2e20a9c1.js"></script>
+  <script src="https://www.iot.gov.tw/assets/plugin/picturefill.min-1e1f7d4e867ad1ec3d5886ad5e69512b6692509c939a89634ffcf63ba17b6b7d.js"></script>
+  <script src="https://www.iot.gov.tw/assets/bootstrap.min-18024db0d6a0bc75ca740863a3b491b7f9b9cbd080ba3ee25e22265801d0b0c9.js"></script>
+  
+  <script src="https://www.iot.gov.tw/assets/plugin/jquery.cycle2.video.min-384b34504c43f5962ffa3295b0b28947fd8a4498968853be0477a5dc664bd9b9.js"></script>
+  <script src="https://www.iot.gov.tw/assets/plugin/jquery-bullseye-min-8149d6adb748bd9561e9f1fd822e59337a75d065e017c7891699d50d69414bc2.js"></script>
+  <script src="https://www.iot.gov.tw/assets/plugin/jquery.scrolling-tabs.min-2ca04680a371ceee7710b234d1e8795bf3d4247da7327300094cf74ed64829fa.js"></script>
+
+  <script src="https://www.iot.gov.tw/assets/plugin/owl.carousel.min-ec9585fb4e14679aaa65e0d62fac99d496ce23ea8052fc718d5b3fbc84525e61.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://www.iot.gov.tw/assets/template/owl.carousel.min.css">
+  <link rel="stylesheet" type="text/css" href="https://www.iot.gov.tw/assets/template/owl.theme.default.min.css">
+  
+  <script src="https://www.iot.gov.tw/assets/app-8fda8308c21b1f00386aa5ce7381b6f6cca4353a9ce60def08bbd206970164b2.js"></script>
+  <script src="https://www.iot.gov.tw/assets/frontend-121b87925d20c2b21764d1c5053c911976bcf14ba23128fed1904f6b7a19033d.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-site-verification" content="M7c6X2dnXD16W8IdV5N4pvmqfKSjwa68xI6vsgci3GM">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/basic/icon-25f6a89d6786b31e5805ec90e7ba18610228db5085ba6610e43f9e488a81ce60.css">
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/lib/orbit_bar/orbit-bar-560eee87c09dac66f3c1b1d62af8396687f7dc69133e3b6364c82b9f7f3d6c1c.css">
+<script src="https://www.iot.gov.tw/assets/frontend_extend-18d8a9e578b8a7c72226a638c39f581b47ee42b5f58651d7f8b57f27c5fab08a.js"></script>
 </head>
+<body class="internal-page accessibility_mode banner_height_setting_0" data-module="page_content">
+  <noscript style="color: #333333;"><p style="text-align: center;">此網頁需要支援 JavaScript 才能正確運行，請先至你的瀏覽器設定中開啟 JavaScript。</p></noscript>
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/fontawesome-6.2.1.min-8aec0118643d34254cb9f5c27b931239c9de8008c849c9800d8651a5da1abcb2.css">
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/fontawesome-6.2.1-fix.min-a85d2f928ef91b80968519d9fd352220353e6db2bd1a8f61f2f1c4377323c59d.css">
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/lib/jquery-ui-1.13.2/jquery-ui.min-bc39b4e583177d1bfb4d31e880558d84fd307a5b3c87a91f2fadaf0bc4f1cc96.css">
+<link rel="stylesheet" media="all" href="https://www.iot.gov.tw/assets/jquery-ui-timepicker-addon-ee91708eac547223792975e0d9a9aae62127da4b28a58d40c0634927f19665f0.css">
+  <script src="https://www.iot.gov.tw/assets/lib/jquery-ui-1.13.2/jquery-ui.min-b88d0b98b7b90a20cae0fc32eaf0845ac1ffdc0e4b3176c501e353d45c975064.js"></script>
+  <script src="https://www.iot.gov.tw/assets/jquery.ui.datepicker.monthyearpicker-6126b863aa1c4b399bf657869bbc51389d83ff5101b069ff7e1d0b02793c67e1.js"></script>
+<style type="text/css">
+  .ui-dialog {
+    z-index: 2000000000000 !important;
+  }
+  .ui-datepicker {z-index:1000000 !important}
+    @media screen and (min-width:768px){
+      html body #orbit-bar .orbit-bar-inner,html body #orbit-bar .orbit-bar-inner form,html body #orbit-bar .orbit-bar-search-sign-language{
+        background-color: #00819B !important;
+      }
+    }
+    html body #orbit-bar .orbit-bar-inner,html body #orbit-bar .orbit-bar-inner form,html body #orbit-bar .orbit-bar-search-sign-language{
+      background-color: #00819B !important;
+    }
+    html body #orbit-bar .orbit-bar-inner>ul>li:hover>span, html body #orbit-bar .orbit-bar-inner>ul>li:hover>a, html body #orbit-bar .orbit-bar-inner>ul>li:hover #language, html body #orbit-bar .orbit-bar-inner>ul>li>ul li:hover, html body #orbit-bar .orbit-bar-inner>ul>li>ul li.active,.orbit-bar-search-sign-language li:hover form,.orbit-bar-search-sign-language li:hover label
+    {
+        background-color: #0095CF !important;
+        color: #FCF683 !important;
+    }
+    html body #orbit-bar .orbit-bar-inner>ul>li span:hover,html body #orbit-bar .orbit-bar-inner>ul>li:hover>span#user, html body #orbit-bar .orbit-bar-inner>ul>li>ul li a:hover,html body #orbit-bar .orbit-bar-inner>ul>li:hover #language,html body #orbit-bar .orbit-bar-menu .showlist:hover .orbit-bar-home, html body #orbit-bar .orbit-bar-inner>ul>li:hover label
+    {
+        color: #FCF683 !important;
+    }
+    html body #orbit-bar .orbit-bar-inner > ul > li > ul
+    {
+      background-color: #0095CF !important;
+    }
+    @media screen and (max-width:767px){
+      html body #orbit-bar .orbit-bar-inner > ul
+      {
+        background-color: #0095CF !important;
+      }
+      html body #orbit-bar .orbit-bar-inner form{
+        background-color: #0095CF !important;
+      }
+    }
+    @media screen and (min-width:768px){
+      html body #orbit-bar .orbit-bar-search-sign-language #language, html body #orbit-bar .orbit-bar-menu .orbit-bar-home,html body #orbit-bar .orbit-bar-search-sign-language #user,html body #orbit-bar .orbit-bar-inner>ul>li>a,html body #orbit-bar .orbit-bar-inner>ul>li label {
+        color: #ffffff !important;
+      }
+    }
+    @media screen and (max-width:767px){
+      #orbit-bar .orbit-bar-title a{
+        color: #ffffff !important;
+      }
+      label[for="open-orbit-nav"]{
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+      }
+    }
+    html body #orbit-bar .orbit-bar-inner > ul > li > ul a,html body #orbit-bar .orbit-bar-inner > ul > li > ul .active{
+      color: #ffffff !important;
+    }
+    html body #orbit-bar .orbit-bar-inner > ul > li > ul:before{
+      border-color: transparent transparent #ffffff transparent !important;
+    }
+    @media screen and (max-width:767px){
+      html body #orbit-bar .orbit-bar-search-sign-language #language, html body #orbit-bar .orbit-bar-menu .orbit-bar-home,html body #orbit-bar .orbit-bar-search-sign-language #user,html body #orbit-bar .orbit-bar-inner>ul>li>a,html body #orbit-bar .orbit-bar-inner>ul>li label {
+        color: #ffffff !important;
+      }
+    }
+</style>
+  <div id="orbit-bar">
+      <label for="open-orbit-login" style="display:none;">Open login</label>
+      <input type="checkbox" title="open login" id="open-orbit-login">
+      <label for="open-orbit-login" class="cover" title="Close login"><p style="display: none;">Close login</p></label>
+      <div class="login-window">
+        <div class="login-header">
+          <label tabindex="0" for="open-orbit-login" class="close">close</label>
+          <p>交通部運輸研究所</p>
+        </div>
+        <div class="login-body">
+          <form class="container" action="/sessions?locale=zh_tw" accept-charset="UTF-8" method="post">
+<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="tENNcfCRpbeuMeA/Ob1lJw/PLImyiSAVbU+s+btjgUFrwz921v1PKSzr8Gm2dpw6LA+giomq1j37bdL6I6feDw==">
+            <div class="prepend input-group">
+              <span class="add input-group-addon"><i class="icon-user"></i></span>
+              <label for="user_user_id" style="display:none;">Username</label>
+              <input class="input" id="user_user_id" title="username" name="user_name" placeholder="使用者帳號" size="30" type="text">
+            </div>
+            <div class="prepend input-group">
+              <span class="add input-group-addon"><i class="icon-lock"></i></span>
+              <label for="user_password" style="display:none;">Password</label>
+              <input class="input" id="user_password" name="password" placeholder="密碼" title="password" size="30" type="password">
+            </div>
+            <div class="login-submit-wrap">
+              <div class="submit">
+                <button class="login-btn" type="submit">登入</button>
+              </div>
+            </div>
+            <script>
+              function forgot_password(){
+                if(document.getElementById('user_user_id').value !='')
+                  var post_data = $.post('/sessions/forgot_password',{ user_name: document.getElementById('user_user_id').value });
+                if(document.getElementById('user_user_id').value != ''){
+                  post_data.done(function(){
+                    try{
+                      if(I18n.locale == 'en')
+                        if(post_data.responseJSON['user_email'] == '')
+                          var alert_texts = 'This user_name or user_email is not registered yet!Please contact customer service to deal with this problem.';
+                        else
+                          var alert_texts = 'Please check '+post_data.responseJSON['user_email']+' to see the new password for user_name:'+post_data.responseJSON['user_name'].join(' , ');
+                      else
+                        if(post_data.responseJSON['user_email'] == '')
+                          var alert_texts = '該使用者名稱或是使用者email尚未註冊!請聯絡客服協助處理。';
+                        else
+                          var alert_texts = '請確認'+post_data.responseJSON['user_email']+'來查看使用者名稱:'+post_data.responseJSON['user_name'].join('、')+'的新密碼';
+                    }catch(e){
+                      if(I18n.locale == 'en')
+                        var alert_texts = 'Please contact customer service to deal with the problem.';
+                      else
+                        var alert_texts = '請聯絡客服協助處理。';
+                    };
+                    $('.alert-error').text(alert_texts);
+                    alert(alert_texts);
+                  });
+                }else{
+                  if(I18n.locale == 'en')
+                    var alert_texts = 'Please fill-in your user id without password, click “Forgot your password?“, and check you email for updated password.';
+                  else
+                    var alert_texts = '請輸入您的使用者帳號無需輸入密碼，點選「忘記密碼」後至您的信箱檢查密碼更新郵件！';
+                  alert(alert_texts);
+                };
+              };
+            </script>
+            <a onclick="forgot_password()" style="float: left;font-size: 0.813em;margin-left: 1em;" href="#forgot_password">忘記密碼?</a>
+            <div style="clear: both;"></div>
+</form>        </div>
 
-<body>
-  <iframe src="https://script.google.com/macros/s/AKfycbyr6eVWk0OYZ76aGVkU1dUcUslj1URvSqDreX_bUu0bdhK2NY-pulKXkwXdnUCHWHFp/exec" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto">
-  </iframe>
+      </div>
+    <input type="checkbox" id="open-orbit-nav" title="orbitbar">
+    <div class="orbit-bar-inner">
+      <label for="open-orbit-nav">
+        <i class="icons-list-2"></i>
+      </label>
+      <ul class="orbit-bar-menu">
+        <li>
+          <a href="javascript:;" class="orbit-bar-logo" title="請登入以管理網站,按下開啟登入視窗">
+            <img src="https://www.iot.gov.tw/uploads/site/default_image/658286a13673766169dd5812/logo2.png" alt="奧博科技商標">
+            <p style="display: none;">請登入以管理網站,按下開啟登入視窗</p>
+          </a>
+        </li>
+        <li>
+          <a href="/" class="orbit-bar-home" title="首頁" tabindex="0"><i class="icons-house"></i><p>home</p></a>
+        </li>
+      </ul>
+      <h1 class="orbit-bar-title">
+        <a href="/" title="交通部運輸研究所">交通部運輸研究所</a>
+      </h1>
+      <ul class="orbit-bar-search-sign-language">
+        <li style="background-color:transparent;">
+          <form id="search" method="get" action="https://www.google.com/custom" target="_blank" style="border: 0 !important;">
+            <input type="hidden" name="authenticity_token" value='value="bZgqixmmoXdZXTCCB4NfjILuu+Ti7PmrU2f08ltv53qyGFiMP8pL6duHINSISKaRoS4359nPD4PFRYrxw6u4NA=="'>
+            <input type="hidden" name="client" value="pub-&amp;amp">
+            <input type="hidden" name="ie" id="ie" value="utf-8">
+            <input type="hidden" name="oe" id="oe" value="utf-8">
+            <input type="hidden" name="cof" id="cof" value="AH:center;AWFID:03de271f1940eea3;">
+            <input type="hidden" name="domains" value="www.iot.gov.tw">
+            <input type="hidden" name="sitesearch" value="www.iot.gov.tw">
+            <label style="color: inherit !important;display: none;z-index: 1;" for="q" accesskey="S" title="全站搜尋(S)">Google Search</label>
+            <input type="search" name="q" id="q" value="" placeholder="全站搜尋" x-webkit-speech="" title="search">
+          </form>
+        </li>
+        <li id="language-li" style="background-color:transparent;" class="mobile_login_bar">
+        </li>
+        <li style="margin-right:-1em;" class="mobile_login_bar">
+          <a id="loginbutton" title="按下開啟登入視窗" href="javascript:;">
+            <label for="open-orbit-login">
+              <i style="font-style: inherit;font-size: 0.8rem;width: 2.875em;text-align: right;vertical-align: middle;">登入</i>
+              <i class="icons-login" style="font-size: 1.4em;width: 1.875em;text-align: left;vertical-align: middle;"></i>
+            </label>
+          </a>
+        </li>
+        <style>
+          @media screen and (min-width:768px){
+            .orbit-bar-search-sign-language{
+              max-height:100%;
+            }
+          }
+        </style>
+      </ul>
+      <ul id="language-li-ul" class="orbit-bar-mobile-sign-language" style="background-color: #00819B !important;">
+        <li>
+        </li>
+        <li>
+          <label for="open-orbit-login">
+            <i class="icons-login" style="color: #ffffff !important;"></i>
+            <p style="display: none;">Open login</p>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <style>
+  @media (max-width: 767px) {#orbit-bar ul.orbit-bar-search-sign-language > li + li{width:33.3333%;}}
+  </style>
+      <script>$('.orbit-bar-logo').off('click').on('click',function(){window.orbit_login_button = $(this);$("#open-orbit-login").click()});</script>
+  <script type="text/javascript">
+    var lang_opentitle = '按下開啟語言選單';
+    var lang_closetitle = '按下關閉語言選單';
+    $('#languagebutton').off('click').on('click',function(){
+      if ($(this).parent().find('>ul').hasClass('show')) {
+        $(this).attr('title', lang_opentitle);
+      } else {
+        $(this).attr('title', lang_closetitle);
+      }
+    });
+    $('#languagebutton').focus(function(){
+      if ($(this).parent().find('>ul').hasClass('show')) {
+        $(this).attr('title', lang_closetitle);
+      } else {
+        $(this).attr('title', lang_opentitle);
+      }
+    });
+    /* when tab key choose close,press enter to close login window start */
+    function closelabel(e){
+      var keynum;
+      if(window.event) // IE
+      {
+        keynum = e.keyCode
+      }
+      else if(e.which) // Netscape/Firefox/Opera/chrome
+      {
+        keynum = e.which
+      }
+      if( keynum == 13 ){
+        $(".orbit-bar-logo").one("focusin",function(){
+          window.orbit_login_button.focus();
+        })
+        $("#open-orbit-login").click();
+      };
+    }
+    $('label.close').attr('onkeydown','closelabel(event)');
+    /* when tab key choose  close,press enter to close login window end   */
+    $('#loginbutton >label').off('click').on('click',function(){window.orbit_login_button = $('#loginbutton');$("#open-orbit-login").click()});
+    $('#loginbutton').off('click').on('click',function(){window.orbit_login_button = $('#loginbutton');$("#open-orbit-login").click()});
+    /* press esc to close login window start */
+    function esc_close_login_window(event){
+      var e = event;
+      var keynum;
+      if(window.event) // IE
+      {
+        keynum = e.keyCode;
+      }
+      else if(e.which) // Netscape/Firefox/Opera/chrome
+      {
+        keynum = e.which;
+      }
+      if( keynum == 27 ){
+        $(".orbit-bar-logo").one("focusin",function(){
+          window.orbit_login_button.focus();
+        })
+        $("#open-orbit-login").click();
+      };
+    }
+    /* press esc to close login window end   */
+    $("#open-orbit-login").on("change",function(){
+      if($(this).is(":checked")){
+        $(window).off('keydown', esc_close_login_window).on('keydown', esc_close_login_window);
+        $("#user_user_id").focus(); //when open login window,focus on the username
+      }else{
+        $(window).off('keydown', esc_close_login_window);
+      }
+    })
+    $(".login-body form").on("submit",function(){
+      $(this).append("<input type='hidden' name='referer_url' value='/zh_tw/archive/pub/softwareapp/?wiki=57084081'/>");
+    })
+    var I18n = {};
+    Object.defineProperty(I18n,"locale",{
+      value: "zh_tw"
+    });
+    Object.defineProperty(I18n,"validLocales",{
+      value: ["zh_tw"]
+    });
+  </script>
+  <style>
+    #language-li ul li a{
+      margin-left: 0;
+      position: relative;
+    }
+    @media screen and (min-width:768px){
+        .sub_orbit_bar{
+          background-color:#0095CF!important;
+        }
+        .orbit-bar-menu{
+          background-color:transparent!important;
+        }
+        .sub_orbit_bar_text{
+          color:#ffffff!important;
+        }
+    }
+    @media screen and (max-width:767px){
+        .sub_orbit_bar{
+          background-color:#00819B!important;
+        }
+        .orbit-bar-menu{
+          background-color:#00819B!important;
+        }
+        .sub_orbit_bar_text{
+          color:#ffffff!important;
+        }
+      .mobile_login_bar{
+        width: 50%!important;
+      }
+    }
+      @media screen and (max-width: 767px){
+        #orbit-bar .orbit-bar-inner .orbit-bar-mobile-sign-language {
+            background: #333;
+            display: block;
+            margin: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+      }
+    .orbit-bar-mobile-sign-language {
+        display: none;
+    }
+    @media screen and (max-width: 767px){
+      #orbit-bar .orbit-bar-inner .orbit-bar-mobile-sign-language > li ul.show {
+        display: block;
+      }
+      #orbit-bar .orbit-bar-inner .orbit-bar-mobile-sign-language > li > span > span {
+        display: none;
+      }
+      #orbit-bar .orbit-bar-inner .orbit-bar-mobile-sign-language > li {
+        color: #fff;
+        float: left;
+        position: relative;
+      }
+      #orbit-bar .orbit-bar-inner .orbit-bar-mobile-sign-language > li > span , #orbit-bar .orbit-bar-inner .orbit-bar-mobile-sign-language > li > label{
+        cursor: pointer;
+        display: block;
+        height: 40px;
+        line-height: 43px;
+        width: 40px;
+        text-align: center;
+        margin-bottom: 0;
+      }
+      #orbit-bar .orbit-bar-inner .orbit-bar-mobile-sign-language > li ul {
+          background: #333 none repeat scroll 0 0;
+          border-radius: 0;
+          display: none;
+          position: fixed;
+          right: 0;
+          top: 40px;
+          width: 100%;
+      }
+    }
+  </style>
+  <script>
+    function calc_orbit_bar_title_width(){
+      if($(window).outerWidth(true) <= 767){
+        $('.orbit-bar-inner > .orbit-bar-title').css({'width': '','margin': ''});
+        return;
+      }
+      var w1 = $('.orbit-bar-inner').width();
+      var w2 = $('.orbit-bar-inner>*:not(.orbit-bar-title)').map(function(i,v){
+        if ($(v).hasClass('custom_widget') && $(v).text().replace(/\s+/,'')==''){
+          $(v).css('flex','none');
+          return 0;
+        }else{
+          return $(v).css('display') == 'none' ? 0 : $(v).outerWidth(true);
+        }
+      }).toArray().reduce(function(v1,v2){return v1+v2});
+      var w3 = $('.orbit-bar-title').css('margin-left').match(/([\d\.]+)px$/);
+      w3 = w3 ? parseFloat(w3[0]) : 0;
+      var w4 = $('.orbit-bar-title').css('margin-right').match(/([\d\.]+)px$/);
+      w4 = w4 ? parseFloat(w4[0]) : 0;
+      var title_width = w1-w2-w3-w4-2;
+      $('.orbit-bar-title').width(title_width);
+      return title_width;
+    }
+    $(document).ready(function(){
+      calc_orbit_bar_title_width();
+      $(".orbit-bar-inner").css("overflow","visible");
+      if($(window).outerWidth(true) <= 767){
+        $('.orbit-bar-menu').before($('.orbit-bar-title'));
+      }else{
+        $(".orbit-bar-search-sign-language").before($('.orbit-bar-title'));
+      }
+    })
+    $(window).on("load",function(){
+      calc_orbit_bar_title_width();
+    })
+    $(window).resize(function(){
+      calc_orbit_bar_title_width();
+      if($(window).outerWidth(true) <= 767){
+        $('.orbit-bar-menu').before($('.orbit-bar-title'));
+      }else{
+        $(".orbit-bar-search-sign-language").before($('.orbit-bar-title'));
+      }
+    })
+  </script>
 
+  <div class="background rwdimgl" data-pp="100"></div>
+  <div class="background rwdimgs" data-pp="10000"></div>
+  
+
+<div id="fb-root"></div>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="mobile-menu">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#layout-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar icon-bar-top"></span>
+        <span class="icon-bar icon-bar-middle"></span>
+        <span class="icon-bar icon-bar-bottom"></span>
+  </button>
+  <div class="cover"></div>
+</div>
+    <a href="#content" id="gotocenter" title="跳到主要內容" tabindex="1" class="sr-only sr-only-focusable add_default">跳到主要內容</a>
+<div class="header-nav">
+    <a id="accesskey_top" accesskey="U" title="上方主選單連結區(U)" href="#U" style="color: inherit !important;display: inline-block;z-index: 1;">:::</a>
+      <a href="/" title="回首頁">回首頁</a>｜<a href="/zh_tw/sitemap" title="網站導覽(W)" accesskey="W" style="color: inherit !important;position: relative;margin: 0;z-index: 1;">網站導覽</a>｜<a href="/zh_tw/siteinfo/contact" title="聯絡我們">聯絡我們</a> ｜<a href="/zh_tw/mailbox" title="所長(民意)信箱">所長(民意)信箱</a>｜<a href="/?locale=en" title="English">English</a> <meta name="google-site-verification" content="M7c6X2dnXD16W8IdV5N4pvmqfKSjwa68xI6vsgci3GM">
+    </div>
+<header class="navbar layout-header no-print" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#layout-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar icon-bar-top"></span>
+        <span class="icon-bar icon-bar-middle"></span>
+        <span class="icon-bar icon-bar-bottom"></span>
+      </button>
+	  
+	  <script>$(document).ready(function(){var url =$('.site-logo').eq(0).attr('src');if(url == "https://www.iot.gov.tw/assets/default-site-logo.png"){$('.navbar-brand').eq(0).remove();};if($('.navbar-brand').length == 2){$('.site-logo').css('height','auto')};$('.site-logo').eq(0).css('margin-right',0);$('.navbar-brand').css('padding-right',0)})</script>
+      <a title="交通部運輸研究所" class="navbar-brand" href="/"><h2 class="default_site_h1">
+<img class="site-logo" src="https://www.iot.gov.tw/uploads/site/site_logo/658286a13673766169dd5812/IOTlogo.png" alt="交通部運輸研究所 Institute of Transportation, MOTC的Logo"> <span style="display: none;">交通部運輸研究所 Institute of Transportation, MOTC</span>
+</h2></a>
+    </div>
+    <div class="collapse navbar-collapse modules-menu" id="layout-navigation">
+    
+      <ul id="main-nav" class="navbar-right navbar-nav modules-menu-level-0 nav-level-0 no-print" data-menu-level="0">
+<a id="accesskey_menu" title="上方功能選單連結區(M)" accesskey="M" href="#M" style="left: 0;color: #333333 !important;display: inline-block;z-index: 1;">:::</a><li>
+    <a href="/zh_tw/about" title="關於本所" data-menu-link="true" class="dropdown-toggle" target="_self">關於本所</a>
+    <ul class="modules-menu-level-1 nav-level-1" data-menu-level="1">
+<li>
+        <a href="/zh_tw/about/director" title="所長介紹" data-menu-link="true" target="_self">所長介紹</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/about/director/current/%E6%9E%97%E7%B9%BC%E5%9C%8B-77512588" title="現任所長" data-menu-link="true" target="_self">現任所長</a>
+          </li>
+<li>
+            <a href="/zh_tw/about/director/predecessor" title="歷任所長" data-menu-link="true" target="_self">歷任所長</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/about/history" title="沿革" data-menu-link="true" target="_self">沿革</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/about/organization" title="組織與職掌" data-menu-link="true" target="_self">組織與職掌</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/about/overview" title="施政概況" data-menu-link="true" target="_self">施政概況</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/about/projects" title="研究計畫與進度" data-menu-link="true" target="_self">研究計畫與進度</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/about/projects/p1" title="運輸計畫及陸運" data-menu-link="true" target="_self">運輸計畫及陸運</a>
+          </li>
+<li>
+            <a href="/zh_tw/about/projects/p2" title="運輸工程及海空運" data-menu-link="true" target="_self">運輸工程及海空運</a>
+          </li>
+<li>
+            <a href="/zh_tw/about/projects/p3" title="運輸安全" data-menu-link="true" target="_self">運輸安全</a>
+          </li>
+<li>
+            <a href="/zh_tw/about/projects/p4" title="運輸經營及管理" data-menu-link="true" target="_self">運輸經營及管理</a>
+          </li>
+<li>
+            <a href="/zh_tw/about/projects/p5" title="運輸科技及資訊" data-menu-link="true" target="_self">運輸科技及資訊</a>
+          </li>
+<li>
+            <a href="/zh_tw/about/projects/p6" title="運輸能源及環境" data-menu-link="true" target="_self">運輸能源及環境</a>
+          </li>
+<li>
+            <a href="/zh_tw/about/projects/p7" title="運輸技術研究" data-menu-link="true" target="_self">運輸技術研究</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/about/major" title="歷年重大事蹟" data-menu-link="true" target="_self">歷年重大事蹟</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/about/milestone" title="大事紀要" data-menu-link="true" target="_self">大事紀要</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/about/location" title="本所位址與行車資訊" data-menu-link="true" target="_self">本所位址與行車資訊</a>
+        
+      </li>
+</ul>
+  </li>
+<li>
+    <a href="/zh_tw/proclamation" title="訊息公告" data-menu-link="true" class="dropdown-toggle" target="_self">訊息公告</a>
+    <ul class="modules-menu-level-1 nav-level-1" data-menu-level="1">
+<li>
+        <a href="/zh_tw/proclamation/news" title="最新消息" data-menu-link="true" target="_self">最新消息</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/proclamation/press" title="本所新聞稿" data-menu-link="true" target="_self">本所新聞稿</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/proclamation/newbook" title="新書快訊" data-menu-link="true" target="_self">新書快訊</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/proclamation/ann" title="行政公告" data-menu-link="true" target="_self">行政公告</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/proclamation/ann/tender" title="招標公告" data-menu-link="true" target="_self">招標公告</a>
+          </li>
+<li>
+            <a href="/zh_tw/proclamation/ann/decision" title="決標公告" data-menu-link="true" target="_self">決標公告</a>
+          </li>
+<li>
+            <a href="/zh_tw/proclamation/ann/authorization" title="授權資訊公告" data-menu-link="true" target="_self">授權資訊公告</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/proclamation/employment" title="就業資訊" data-menu-link="true" target="_self">就業資訊</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/proclamation/employment/positions" title="徵才資訊" data-menu-link="true" target="_self">徵才資訊</a>
+          </li>
+<li>
+            <a href="/zh_tw/proclamation/employment/job_resources" title="相關網站" data-menu-link="true" target="_self">相關網站</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/proclamation/honors" title="本所獎項專區" data-menu-link="true" target="_self">本所獎項專區</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/proclamation/honors/list" title="頒發獎項名單" data-menu-link="true" target="_self">頒發獎項名單</a>
+          </li>
+<li>
+            <a href="/zh_tw/proclamation/honors/awards" title="本所獲獎資訊" data-menu-link="true" target="_self">本所獲獎資訊</a>
+          </li>
+</ul>
+      </li>
+</ul>
+  </li>
+<li>
+    <a href="/zh_tw/research" title="政策與研究" data-menu-link="true" class="dropdown-toggle" target="_self">政策與研究</a>
+    <ul class="modules-menu-level-1 nav-level-1" data-menu-level="1">
+<li>
+        <a href="/zh_tw/research/highlight" title="近年重要成果" data-menu-link="true" target="_self">近年重要成果</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/research/highlight/chap1" title="壹、強化運輸規劃與審議支援" data-menu-link="true" target="_self">壹、強化運輸規劃與審議支援</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/highlight/chap2" title="貳、提升海空運競爭優勢" data-menu-link="true" target="_self">貳、提升海空運競爭優勢</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/highlight/chap3" title="參、優化公共運輸服務及產業轉型" data-menu-link="true" target="_self">參、優化公共運輸服務及產業轉型</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/highlight/chap4" title="肆、營造潔淨且具韌性的運輸環境" data-menu-link="true" target="_self">肆、營造潔淨且具韌性的運輸環境</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/highlight/chap5" title="伍、深化運輸安全管理" data-menu-link="true" target="_self">伍、深化運輸安全管理</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/highlight/chap6" title="陸、推動交通科技創新應用及產業發展" data-menu-link="true" target="_self">陸、推動交通科技創新應用及產業發展</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/highlight/chap7" title="柒、精進交通設施維護管理與災防技術" data-menu-link="true" target="_self">柒、精進交通設施維護管理與災防技術</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/research/results" title="研究成果應用採行說明" data-menu-link="true" target="_self">研究成果應用採行說明</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/research/results/112" title="112年度" data-menu-link="true" target="_self">112年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/111" title="111年度" data-menu-link="true" target="_self">111年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/110" title="110年度" data-menu-link="true" target="_self">110年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/109" title="109年度" data-menu-link="true" target="_self">109年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/108" title="108年度" data-menu-link="true" target="_self">108年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/107" title="107年度" data-menu-link="true" target="_self">107年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/106" title="106年度" data-menu-link="true" target="_self">106年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/105" title="105年度" data-menu-link="true" target="_self">105年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/104" title="104年度" data-menu-link="true" target="_self">104年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/103" title="103年度" data-menu-link="true" target="_self">103年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/102" title="102年度" data-menu-link="true" target="_self">102年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/101" title="101年度" data-menu-link="true" target="_self">101年度</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/results/100" title="100年度" data-menu-link="true" target="_self">100年度</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/research/policy" title="重大政策" data-menu-link="true" target="_self">重大政策</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/research/policy/scheme" title="政策與方案" data-menu-link="true" target="_self">政策與方案</a>
+          </li>
+<li>
+            <a href="/zh_tw/plans" title="施政計畫" data-menu-link="true" target="_self">施政計畫</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/policy/websites" title="相關網站" data-menu-link="true" target="_self">相關網站</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/research/focus" title="亮點主題專區" data-menu-link="true" target="_self">亮點主題專區</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/research/thinking" title="前瞻智庫" data-menu-link="true" target="_self">前瞻智庫</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/implement" title="落實應用" data-menu-link="true" target="_self">落實應用</a>
+          </li>
+<li>
+            <a href="/zh_tw/research/construct" title="能量建構" data-menu-link="true" target="_self">能量建構</a>
+          </li>
+</ul>
+      </li>
+</ul>
+  </li>
+<li>
+    <a href="/zh_tw/service" title="服務專區" data-menu-link="true" class="dropdown-toggle" target="_self">服務專區</a>
+    <ul class="modules-menu-level-1 nav-level-1" data-menu-level="1">
+<li>
+        <a href="/zh_tw/service/events" title="活動報名" data-menu-link="true" target="_self">活動報名</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/service/feedback" title="意見回饋" data-menu-link="true" target="_self">意見回饋</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/service/feedback/survey" title="問卷調查" data-menu-link="true" target="_self">問卷調查</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/feedback/poll" title="民意調查" data-menu-link="true" target="_self">民意調查</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/feedback/discuss" title="討論專區" data-menu-link="true" target="_self">討論專區</a>
+          </li>
+<li>
+            <a href="https://join.gov.tw/" title="意見交流" data-menu-link="true" target="_blank">意見交流</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/service/opendata" title="政府資訊/資料公開專區" data-menu-link="true" target="_self">政府資訊/資料公開專區</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/service/opendata/appform" title="申請說明" data-menu-link="true" target="_self">申請說明</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/opendata/data" title="主動公開之政府資訊專區" data-menu-link="true" target="_self">主動公開之政府資訊專區</a>
+          </li>
+<li>
+            <a href="https://www.motc.gov.tw/201506260001/index" title="交通部政府資料開放專區" data-menu-link="true" target="_blank">交通部政府資料開放專區</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/opendata/eco" title="生態檢核專區" data-menu-link="true" target="_self">生態檢核專區</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/green" title="綠運輸專區" data-menu-link="true" target="_self">綠運輸專區</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/opendata/%E8%81%B7%E6%A5%AD%E5%AE%89%E5%85%A8%E8%A1%9B%E7%94%9F%E5%B0%88%E5%8D%80" title="職業安全衛生專區" data-menu-link="true" target="_self">職業安全衛生專區</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/%E6%B0%91%E9%96%93%E5%9C%98%E9%AB%94%E7%B6%93%E8%B2%BB%E7%94%B3%E8%AB%8B" title="民間團體經費申請" data-menu-link="true" target="_self">民間團體經費申請</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/service/eli5" title="科普影片、懶人包專區" data-menu-link="true" target="_self">科普影片、懶人包專區</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/service/gender" title="性別主流化專區" data-menu-link="true" target="_self">性別主流化專區</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/service/gender/explain" title="性別主流化宣導事項" data-menu-link="true" target="_self">性別主流化宣導事項</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/gender/psr" title="性騷擾防治" data-menu-link="true" target="_self">性騷擾防治</a>
+          </li>
+<li>
+            <a href="https://www.iot.gov.tw/uploads/archive_file_multiple/file/665816f7085777104202cfa9/%E6%80%A7%E5%88%A5%E5%B9%B3%E7%AD%89%E6%8E%A8%E5%8B%95%E8%A8%88%E7%95%AB_111-114%E5%B9%B4_.pdf" title="性別平等推動計畫(111-114年)" data-menu-link="true" target="_self">性別平等推動計畫(111-114年)</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/gender/workgroup" title="本所性別平等工作小組會議紀錄" data-menu-link="true" target="_self">本所性別平等工作小組會議紀錄</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/service/law" title="交通法規" data-menu-link="true" target="_self">交通法規</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="https://motclaw.motc.gov.tw/webMotcLaw2018/" title="交通部交通法規即時檢索系統" data-menu-link="true" target="_blank">交通部交通法規即時檢索系統</a>
+          </li>
+<li>
+            <a href="https://law.moj.gov.tw/" title="法務部之全國法規資料庫" data-menu-link="true" target="_blank">法務部之全國法規資料庫</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/service/confhall" title="本所國際會議廳管理作業須知" data-menu-link="true" target="_self">本所國際會議廳管理作業須知</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/service/links" title="網站連結" data-menu-link="true" target="_self">網站連結</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/service/links/trafficsites" title="熱門交通網站" data-menu-link="true" target="_self">熱門交通網站</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/links/gov" title="國內外政府單位" data-menu-link="true" target="_self">國內外政府單位</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/links/edu" title="國內外學術機構" data-menu-link="true" target="_self">國內外學術機構</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/links/conflinks" title="國外會議資訊" data-menu-link="true" target="_self">國外會議資訊</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/links/others" title="其他連結" data-menu-link="true" target="_self">其他連結</a>
+          </li>
+<li>
+            <a href="/zh_tw/service/links/odocatt" title="公文附件下載" data-menu-link="true" target="_self">公文附件下載</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/service/hcsc" title="交通安全教育教學輔助軟體" data-menu-link="true" target="_self">交通安全教育教學輔助軟體</a>
+        
+      </li>
+</ul>
+  </li>
+<li>
+    <a href="/zh_tw/archive" title="數位典藏" data-menu-link="true" class="dropdown-toggle" target="_self">數位典藏</a>
+    <ul class="modules-menu-level-1 nav-level-1" data-menu-level="1">
+<li>
+        <a href="/zh_tw/archive/pub" title="本所出版品" data-menu-link="true" target="_self">本所出版品</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/archive/pub/reports" title="研究報告下載" data-menu-link="true" target="_self">研究報告下載</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/pub/tresearch" title="運輸研究專輯下載" data-menu-link="true" target="_self">運輸研究專輯下載</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/pub/saleinfo" title="本所出版品展售須知" data-menu-link="true" target="_self">本所出版品展售須知</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/pub/softwareapp" title="本所軟體申請" data-menu-link="true" target="_self">本所軟體申請</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/archive/books" title="館藏圖書" data-menu-link="true" target="_self">館藏圖書</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/archive/books/newbooks" title="新書快訊" data-menu-link="true" target="_self">新書快訊</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/books/bookslist" title="館藏圖書" data-menu-link="true" target="_self">館藏圖書</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/archive/tjournal" title="運輸計劃季刊" data-menu-link="true" target="_self">運輸計劃季刊</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/archive/tjournal/tlist" title="季刊資訊" data-menu-link="true" target="_self">季刊資訊</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/tjournal/tcalling" title="季刊稿約" data-menu-link="true" target="_self">季刊稿約</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/archive/hjournal" title="港灣技術季刊" data-menu-link="true" target="_self">港灣技術季刊</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/archive/dissertation" title="博碩士論文" data-menu-link="true" target="_self">博碩士論文</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/archive/dissertation/dlist" title="博碩士論文" data-menu-link="true" target="_self">博碩士論文</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/dissertation/dcalling" title="徵求論文須知" data-menu-link="true" target="_self">徵求論文須知</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/dissertation/readers" title="讀者須知" data-menu-link="true" target="_self">讀者須知</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/archive/journal" title="期刊資訊" data-menu-link="true" target="_self">期刊資訊</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/archive/journal/enlist" title="英文期刊查詢" data-menu-link="true" target="_self">英文期刊查詢</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/journal/enjournal" title="本所英文期刊一覽表" data-menu-link="true" target="_self">本所英文期刊一覽表</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/journal/chjournal" title="本所中文期刊一覽表" data-menu-link="true" target="_self">本所中文期刊一覽表</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/journal/extjournal" title="外部電子期刊一覽表(中文)" data-menu-link="true" target="_self">外部電子期刊一覽表(中文)</a>
+          </li>
+</ul>
+      </li>
+<li>
+        <a href="/zh_tw/archive/media" title="多媒體影音" data-menu-link="true" target="_self">多媒體影音</a>
+        
+      </li>
+<li>
+        <a href="/zh_tw/archive/ebooks" title="電子書" data-menu-link="true" target="_self">電子書</a>
+        <ul class="modules-menu-level-2 nav-level-2" data-menu-level="2">
+<li>
+            <a href="/zh_tw/archive/ebooks" title="全部" data-menu-link="true" target="_self">全部</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/ebooks/e1" title="公路類" data-menu-link="true" target="_self">公路類</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/ebooks/e2" title="年報類" data-menu-link="true" target="_self">年報類</a>
+          </li>
+<li>
+            <a href="/zh_tw/archive/ebooks/e3" title="其他" data-menu-link="true" target="_self">其他</a>
+          </li>
+</ul>
+      </li>
+</ul>
+  </li>
+</ul>
+    </div>
+  </div>
+</header>
+
+
+
+  <div class="layout-content">
+    <section class="layout-slide no-print single-child-datapp internal-page-banner" data-pp="300"><div class="w-ba-banner ba-banner-widget-3" data-subpart-id="661df7b336737644ff4756cd">
+  <div class="w-ba-banner__wrap  cycle-slideshow" data-list="images" data-level="0" data-cycle-slides=".w-ba-banner__slide" data-cycle-log="false" data-cycle-auto-height="0" data-cycle-speed="500" data-cycle-timeout="5000" data-cycle-fx="fade" data-cycle-pager=".banner_caption_661df7b336737644ff4756cd" data-pager-template="&lt;li&gt;&lt;a&gt;&lt;/a&gt;&lt;/li&gt;" data-pager-active-class="active-slide" data-cycle-swipe="true" data-cycle-swipe-fx="scrollHorz">
+    <div class="w-ba-banner__slide active" data-link="" data-cycle-title="內頁橫幅裝飾圖片" data-cycle-desc="" data-overlay-template="&lt;h3&gt;內頁橫幅裝飾圖片&lt;/h3&gt;" data-target="" data-category="" data-tags="">
+          <a href="" target="" title="內頁橫幅裝飾圖片">
+              <img class="w-ba-banner__image banner-responsive" src="https://www.iot.gov.tw/uploads/banner_image/file/6593721f36737684416c2fd2/innerpage_bg.jpg" alt="內頁橫幅裝飾圖片">
+          </a>
+    </div>
+  </div>
+  <ul class="w-ba-banner__pager-3 banner-pager banner_caption_661df7b336737644ff4756cd"></ul>
+	<ul class="controlplay">
+<a role="button" class="resume-slide" title="繼續播放"><i></i></a><a role="button" class="pause-slide" title="暫停播放"><i></i></a>
+</ul>
+	<ul class="button-mid">
+		<button class="prev-button" title="上一張"></button>
+		<button class="next-button" title="下一張"></button>
+	</ul>
+</div>
+<script>
+	var flag = 1;
+	$('.pause-slide').click(function(){
+		$(this).parent("ul").parent('.w-ba-banner').find(".cycle-slideshow").cycle('pause');
+	});
+	$('.resume-slide').click(function(){
+		$(this).parent("ul").parent('.w-ba-banner').find(".cycle-slideshow").cycle('resume');
+	});
+	$('.next-button').off('click').on('click',function(){
+		$(this).parent("ul").parent('.w-ba-banner').find(".cycle-slideshow").cycle("next");
+
+	})
+	$('.prev-button').off('click').on('click',function(){
+		$(this).parent("ul").parent('.w-ba-banner').find(".cycle-slideshow").cycle("prev");
+	})
+</script>
+</section>
+    <div class="layout-content-inner container">
+    <a accesskey="C" id="content" href="#C" title="主要內容區(C)" style="color: inherit !important;position: relative;margin: 0;z-index: 1;">:::</a><div class="breadcrumb-wrap pagegap" data-pp="500"></div>
+    <div class="sitemenu-wrap pagegap" data-pp="400"></div>
+    <div class="sitemenu-wrap2" data-pp="401"><div data-subpart-id="667cc4170857776c7646f87b">
+<section class="cp">
+<ul class="info">
+	<li>
+<i class="i_clock"></i>資料發布日期：109-02-14</li>
+	<li>
+<i class="i_clock"></i>最後更新日期：114-01-20</li>
+	<li>
+<i class="i_edit"></i>資料來源：交通部運輸研究所</li>
+</ul>
+</section>
+</div></div>
+    <div class="content">
+    <section class="page-content-box col-sm-3" data-pp="901"></section>
+    <section class="page-content-box col-sm-6" data-pp="902"></section>
+    <section class="page-content-box col-sm-3" data-pp="903"></section>
+    </div>
+    <div class="row">
+      <aside class="layout-content-box left-column col-sm-3 leftrwd" data-pp="802"><div class="sitemenu-wrap sitemenu-vertical no-print" data-subpart-id="661df7b336737644ff4756c6">
+	<script type="text/javascript">$('div[data-subpart-id=661df7b336737644ff4756c6]').ready(function(){var ul_tp = $('div[data-subpart-id=661df7b336737644ff4756c6]').find('ul.dropdown-menu').eq(0)
+				 ul_tp.removeClass('dropdown-menu').addClass('show');
+				 $('div[data-subpart-id=661df7b336737644ff4756c6]').find('li').eq(0).find('span').eq(0).remove()
+				})</script>
+	
+	<h3 class="sitemenu-title">數位典藏</h3>
+	<ul data-list="pages" class="sitemenu-list level-1 list-unstyled" data-level="0">
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/pub" target="_self">本所出版品</a>
+			<ul class="sitemenu-list level-2 dropdown-menu" data-list="children" data-level="1">
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/pub/reports" target="_self">研究報告下載</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/pub/tresearch" target="_self">運輸研究專輯下載</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/pub/saleinfo" target="_self">本所出版品展售須知</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/pub/softwareapp" target="_self">本所軟體申請</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			</ul>
+		</li>
+	
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/books" target="_self">館藏圖書</a>
+			<ul class="sitemenu-list level-2 dropdown-menu" data-list="children" data-level="1">
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/books/newbooks" target="_self">新書快訊</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/books/bookslist" target="_self">館藏圖書</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			</ul>
+		</li>
+	
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/tjournal" target="_self">運輸計劃季刊</a>
+			<ul class="sitemenu-list level-2 dropdown-menu" data-list="children" data-level="1">
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/tjournal/tlist" target="_self">季刊資訊</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/tjournal/tcalling" target="_self">季刊稿約</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			</ul>
+		</li>
+	
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/hjournal" target="_self">港灣技術季刊</a>
+			<ul class="sitemenu-list level-2 " data-list="children" data-level="1"></ul>
+		</li>
+	
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/dissertation" target="_self">博碩士論文</a>
+			<ul class="sitemenu-list level-2 dropdown-menu" data-list="children" data-level="1">
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/dissertation/dlist" target="_self">博碩士論文</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/dissertation/dcalling" target="_self">徵求論文須知</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/dissertation/readers" target="_self">讀者須知</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			</ul>
+		</li>
+	
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/journal" target="_self">期刊資訊</a>
+			<ul class="sitemenu-list level-2 dropdown-menu" data-list="children" data-level="1">
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/journal/enlist" target="_self">英文期刊查詢</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/journal/enjournal" target="_self">本所英文期刊一覽表</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/journal/chjournal" target="_self">本所中文期刊一覽表</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/journal/extjournal" target="_self">外部電子期刊一覽表(中文)</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			</ul>
+		</li>
+	
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/media" target="_self">多媒體影音</a>
+			<ul class="sitemenu-list level-2 " data-list="children" data-level="1"></ul>
+		</li>
+	
+		<li class="sitemenu-item level-1 " data-category="" data-tags="">
+			<a class="sitemenu-link level-1" href="/zh_tw/archive/ebooks" target="_self">電子書</a>
+			<ul class="sitemenu-list level-2 dropdown-menu" data-list="children" data-level="1">
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/ebooks" target="_self">全部</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/ebooks/e1" target="_self">公路類</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/ebooks/e2" target="_self">年報類</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			
+				<li class="sitemenu-item level-2" style="position: relative;">
+					<a class="sitemenu-link level-2" href="/zh_tw/archive/ebooks/e3" target="_self">其他</a>
+					<ul class="sitemenu-list level-2 " data-list="children" data-level="2"></ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div></aside>
+      <section class="layout-content-box center-column  col-sm-6">
+      <div class="extra" data-pp="900"></div>
+      <div class="extra" data-pp="600"><div class="widget-breadcrumb widget1 no-print" data-subpart-id="661df7b336737644ff4756cb">
+  <ul class="list-inline breadcrumb" data-list="crumbs" data-level="0">
+  	<li data-category="" data-tags="">
+  		<a href="/?locale=zh_tw">首頁</a>
+  	</li>
+  
+  	<li data-category="" data-tags="">
+  		<a href="/zh_tw/archive">數位典藏</a>
+  	</li>
+  
+  	<li data-category="" data-tags="">
+  		<a href="/zh_tw/archive/pub">本所出版品</a>
+  	</li>
+  
+  	<li data-category="" data-tags="">
+  		<a href="/zh_tw/archive/pub/softwareapp">本所軟體申請</a>
+  	</li>
+  </ul>
+</div></div>
+      <main id="main-content" class="main-content" data-content="true"><div class="view_count pull-right">
+	<i class="fa fa-eye">瀏覽人次:</i>
+	<span class="view-count">19</span>
+</div>
+<style>
+    h3.page-module-title br {
+        display: none;
+    }
+</style>
+
+
+<h3 class="page-module-title">運輸管理機關(構)因應氣候變遷調適系列課程--課程講義、教材影片<i class="i_clock"></i>
+</h3>
+
+<p><span style="font-size:1.250em;">為因應氣候變遷帶來的挑戰，提升政府及相關單位的調適專業能力，本所113年規劃舉辦一系列氣候變遷調適課程，除基礎類的政策和科學知識外，也包含工具、指引類課程，以協助運輸人員執行調適相關作業。</span></p>
+
+<p><span style="font-size:1.250em;">課程相關講義資料僅提供交通部暨部屬機關(構)及相關運輸管理機關(構)內部學習參考。</span></p>
+
+<p><span style="font-size:1.250em;">各場次課程講義、各場次有聲教材影片</span><br>
+<span style="font-size:1.250em;"></span></p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%;">
+	<tbody>
+		<tr>
+			<td>場次</td>
+			<td>講義、影片</td>
+		</tr>
+		<tr> <!-- 維護廠商：景丰科技股份有限公司  -->
+			<td>一 20240621-TCCIP氣變整合平台服務</td>
+			<td>
+        <ul>
+          <li><a href="20240621-TCCIP氣變整合平台服務(含音檔).pptx" target="_self">講義下載</a></li>
+          <li><a href="" onclick="openFullscreenPopup('slide1/index.html');">影片連結</a></li>
+        </ul>
+			</td>
+		</tr>
+		<tr>
+			<td>二 20240621-運輸機關調適課程-黃國慶</td>
+			<td>
+        <ul>
+          <li><a href="20240621-運輸機關調適課程-黃國慶(語音修正版本).pptx" target="_self">講義下載</a></li>
+          <li><a href="" onclick="openFullscreenPopup('slide2/index.html');">影片連結</a></li>
+        </ul>
+      </td>
+		</tr>
+	</tbody>
+</table>
+
+
+</main>
+      <div class="box-social-share no-print"></div>
+      <div class="extra" data-pp="700"></div>
+      </section>
+      <aside class="layout-content-box aside right-column col-sm-3" data-pp="13"></aside>
+    </div>
+    <div class="extra" data-pp="800"></div>
+    </div>
+  </div>
+  
+<footer class="layout-footer no-print">
+  <div class="container layout-footer-inner">
+      <a accesskey="B" href="#B" title="相關聯絡訊息(電話、地址)(B)" style="color: inherit !important;display: inline-block;z-index: 1;">:::</a><div class="layout-footer-content">
+<section class="fatfooter" style="margin-bottom:2em;">
+<div class="container">
+<button class="btn btn-fatfooter close" name="展開選單/OPEN" type="button" aria-pressed="false">展開</button>
+<nav>
+<ul>
+	<li>
+<a href="https://www.iot.gov.tw/zh_tw/about" title="關於本所">關於本所</a>
+	<ul style="display: none;">
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/director" title="所長介紹">所長介紹</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/history" title="沿革">沿革</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/organization" title="組織與職掌">組織與職掌</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/overview" title="施政概況">施政概況</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/projects" title="研究計畫與進度">研究計畫與進度</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/major" title="歷年重大事蹟">歷年重大事蹟</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/milestone" title="大事紀要">大事紀要</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/about/location" title="本所位址與行車資訊">本所位址與行車資訊</a></li>
+	</ul>
+	</li>
+	<li>
+<a href="https://www.iot.gov.tw/zh_tw/proclamation" title="訊息公告">訊息公告</a>
+	<ul style="display: none;">
+		<li><a href="https://www.iot.gov.tw/zh_tw/proclamation/news" title="最新消息">最新消息</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/proclamation/press" title="本所新聞稿">本所新聞稿</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/proclamation/newbook" title="新書快訊">新書快訊</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/proclamation/ann" title="行政公告">行政公告</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/proclamation/employment" title="就業資訊">就業資訊</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/proclamation/honors" title="本所獎項專區">本所獎項專區</a></li>
+	</ul>
+	</li>
+	<li>
+<a href="https://www.iot.gov.tw/zh_tw/research" title="政策與研究">政策與研究</a>
+	<ul style="display: none;">
+		<li><a href="https://www.iot.gov.tw/zh_tw/research/highlight" title="近年重要成果">近年重要成果</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/research/results" title="研究成果應用採行說明">研究成果應用採行說明</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/research/policy" title="重大政策">重大政策</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/research/focus" title="亮點主題專區">亮點主題專區</a></li>
+	</ul>
+	</li>
+	<li>
+<a href="https://www.iot.gov.tw/zh_tw/service" title="服務專區">服務專區</a>
+	<ul style="display: none;">
+		<li><a href="https://www.iot.gov.tw/zh_tw/service/events" title="活動報名">活動報名</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/service/feedback" title="意見回饋">意見回饋</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/service/opendata" title="政府資訊/資料公開專區">政府資訊/資料公開專區</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/service/gender" title="性別主流化專區">性別主流化專區</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/service/law" title="交通法規">交通法規</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/service/confhall" title="本所國際會議廳管理作業須知">本所國際會議廳管理作業須知</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/service/links" title="網站連結">網站連結</a></li>
+	</ul>
+	</li>
+	<li>
+<a href="https://www.iot.gov.tw/zh_tw/archive" title="數位典藏">數位典藏</a>
+	<ul style="display: none;">
+		<li><a href="https://www.iot.gov.tw/zh_tw/archive/pub" title="本所出版品">本所出版品</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/archive/books" title="館藏圖書">館藏圖書</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/archive/tjournal" title="運輸計劃季刊">運輸計劃季刊</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/archive/dissertation" title="博碩士論文">博碩士論文</a></li>
+		<li><a href="https://www.iot.gov.tw/zh_tw/archive/journal" title="期刊資訊">期刊資訊</a></li>
+	</ul>
+	</li>
+</ul>
+</nav>
+</div>
+</section>
+<style type="text/css">.btn-fatfooter{
+    font-weight: lighter!important;
+    opacity: 1!important;
+    padding: 0.5em !important;
+    font-size: 0.8em;
+    cursor: pointer;
+    display: inline-block;
+    width: 80px;
+    color: #FFF!important;
+    border: none;
+    background: #14324f!important;
+    position: absolute;
+    right:1.5em;
+    z-index: 990;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    transition: border,.2s,ease-out;
+    -moz-transition: box-shadow,.2s,ease-out;
+    -o-transition: box-shadow,.2s,ease-out;
+    -webkit-transition: box-shadow,.2s,ease-out;
+    transition: box-shadow,.2s,ease-out;
+}
+
+.fatfooter{
+        position: relative;
+        padding-bottom: 2em;
+        margin: auto;
+        padding-top: 1em;
+        background: #1e5c7c;
+        color: #fff;
+        margin-right: auto;
+        ul{
+        list-style: none;
+        margin: 0;
+        overflow: hidden;
+        width: 100%;
+        padding: 0;
+         }
+        nav{
+        clear: both;
+        color: #fff;
+        overflow: hidden;
+        display: block;
+        position: relative;
+        padding:30px 30px 15px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+         }
+         a{
+             color:#fff;
+                 opacity: 1;
+         }
+    }
+   .fatfooter nav>ul>li{
+        display: inline-block;
+        text-align: left;
+        vertical-align: top;
+        font-size: 1.5em;
+        line-height: 2.6em;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 18%;
+   }
+   .fatfooter nav>ul>li a{
+       font-size: 0.8em;
+       color: #fff;
+        text-align: left;
+        line-height: 1.65em;
+        display: block;
+        font-weight: 800;
+        padding: 1% 5%;
+   }
+   .fatfooter nav>ul>li ul li a{
+        display: block;
+        color: #fff;
+        font-weight: normal;
+        text-align: left;
+        text-decoration: none;
+        font-size: 0.675em;
+        font-weight: normal;
+        line-height: 1.4em;
+        padding: 3px 8px;
+        background: none;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border-bottom: none;
+        margin-left: 0.125em;
+   }
+   .fatfooter nav>ul>li a:hover, .fatfooter nav>ul>li a:focus{
+           color: #fff;
+    text-decoration: none;
+        background: #51e1ff;
+    color: #14324f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+   }
+</style>
+<div class="row">
+<div class="footer_logo layout-content-box col-sm-3"><img alt="交通部運輸研究所logo" src="https://www.iot.gov.tw/uploads/asset/data/6597c9383673765a576c2f00/footer_logo.png" style="width: 100%;" title="交通部運輸研究所logo"></div>
+
+<div class="layout-content-box col-sm-6">
+<p>電話：(02)2349-6789 傳真：(02)2717-6381 地址：105004 臺北市松山區敦化北路240號<br>
+廉政檢舉專線電話：(02)2349-6780　<br>
+建議使用：IE10.0 以上或 Edge、Firefox、Chrome 瀏覽器 最佳瀏覽解析度：1366*768</p>
+
+<p> </p>
+
+<ul class="footer_link">
+	<li><a href="/zh_tw/siteinfo/proclaim/privacy" title="在本視窗開啟 隱私權宣告">隱私權宣告</a></li>
+	<li><a href="/zh_tw/siteinfo/proclaim/security" title="在本視窗開啟 資訊安全政策">資訊安全政策</a></li>
+	<li><a href="/zh_tw/siteinfo/proclaim/license" title="在本視窗開啟 政府網站資料開放宣告">政府網站資料開放宣告</a></li>
+	<li><a href="/zh_tw/siteinfo/proclaim/emergency" title="在本視窗開啟 災害緊急聯絡電話">災害緊急聯絡電話</a></li>
+</ul>
+</div>
+
+<div class="layout-content-box col-sm-3 footer_icon">  <a href="https://accessibility.moda.gov.tw/Applications/Detail?category=20230605143249" target="_blank"><img alt="無障礙標章" class="img1" src="https://www.iot.gov.tw/uploads/asset/data/6597c9e53673765a576c2f04/652230614173773f2f.png" style="width: 100%;" title="無障礙標章"></a> <a href="https://www.gov.tw/" target="_blank"><img alt="我的E政府" class="img2" src="https://www.iot.gov.tw/uploads/asset/data/6597c9f93673765a576c2f08/2052005041211c4c22.png" style="width: 60%;" title="我的E政府"></a> <a href="/zh_tw/siteinfo/proclaim/rss"><img alt="訂閱本站RSS" class="img3" src="https://www.iot.gov.tw/uploads/asset/data/6597cb193673762eb46c2ec4/18720050611335ec1c.png" style="width: 80%;" title="訂閱本站RSS"></a>
+</div>
+</div>
+<style type="text/css">@media (min-width: 768px){
+        .footer_logo{
+            width:25%;
+        }
+    }
+   .footer_icon img{
+        max-width: 120px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 5px;
+   }
+   @media (min-width: 769px){
+       .img1{
+               margin-right: 5px;
+                   width: 80%!important;
+       }
+       .img2{
+               margin-right: 5px;
+                   width: 20%!important;
+       }
+        .img3{
+               margin-right: 5px;
+               margin-top: 5px;
+               margin-left: 5px;
+               width: 20%!important;
+       }
+   }
+   .footer_link{
+       li{
+       float: left;
+    display: block;
+    margin: 0px 10px 5px 0px;
+   }
+   }
+</style>
+</div>
+      <div class="footer-counter">造訪人次 : 3986509</div>
+      <div class="footer-updated-date">最後更新日期 : <span class="last-updated-date" date-format="%Y-%m-%d %H:%M"> 2025-06-02 14:44</span>
+</div>
+  </div>
+</footer>
+<script> 
+    // 維護廠商：景丰科技股份有限公司 
+    function openFullscreenPopup(url) {
+        const features = 'fullscreen=yes,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+      
+        const newWindow = window.open(url, '_blank', features);
+      
+        // 確保新視窗獲得焦點
+        if (newWindow) {
+            // newWindow.focus();
+            // 等待新視窗載入完成後再最大化
+            newWindow.addEventListener('load', () => {
+              newWindow.moveTo(0, 0);
+              newWindow.resizeTo(screen.availWidth, screen.availHeight);
+              // newWindow.resizeTo(1400, 1050);
+            });
+
+            newWindow.focus();
+        } else {
+            alert("Popup 被瀏覽器封鎖了，請允許彈出視窗。");
+        }
+    } 
+</script>
 </body>
-
 </html>
