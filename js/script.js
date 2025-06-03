@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         }
-        console.MediaError(`音訊載入錯誤 for ${presentationAudio.src}: ${errorMessage}`, e);
+        console.error(`音訊載入錯誤 for ${presentationAudio.src}: ${errorMessage}`, e);
         
         // **核心改動：音訊載入失敗，明確禁用播放按鈕**
         isPlaying = false; // 確保播放狀態為 false
