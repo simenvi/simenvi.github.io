@@ -106,8 +106,8 @@ body {
 .slide-viewer {
     width: 100%;
     /* 根據您的投影片長寬比調整 */
-    /* padding-bottom: 56.25%; /* 16:9 比例 (高/寬 * 100%)   */
-    padding-bottom: 70.7%;
+    padding-bottom: 56.25%; /* 16:9 比例 (高/寬 * 100%)   */
+    /* padding-bottom: 70.7%;  */
     position: relative;
     background-color: #000;
     overflow: hidden;
