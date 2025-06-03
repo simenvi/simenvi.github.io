@@ -322,11 +322,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 生成所有縮圖
     generateThumbnails();
-
-    // *** 新增：在頁面載入完成後，自動觸發全螢幕按鈕的點擊事件 ***
-    // 使用 setTimeout 是為了確保 DOM 和其他初始化完成，避免潛在的時序問題
-    // 尤其是在某些瀏覽器可能需要用戶互動才能進入全螢幕的情況下，這樣做更穩健。
-    setTimeout(() => {
-        fullscreenBtn.click();
-    }, 100); // 延遲 100 毫秒，確保頁面元素完全準備好
 });
