@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 請根據您的實際檔案命名和數量進行修改
     const totalSlides = pages; // 假設您有 ? 張投影片 (slide1.png 到 slide5.png)
     const slideImagePrefix = 'slides/slide';
-    const slideImageExtension = '.jpg';
+    const slideImageExtension = '.JPG';
     const audioPrefix = 'audio/audio';
     const audioExtension = '.mp3';
 
