@@ -19,10 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 設定投影片總數和音訊檔案路徑
     // 請根據您的實際檔案命名和數量進行修改
     const totalSlides = pages; // 假設您有 ? 張投影片 (slide1.png 到 slide5.png)
-    const slideImagePrefix = 'slides/slide';
+    const slideImagePrefix = './slides/slide';
     const slideImageExtension = '.JPG';
-    const audioPrefix = 'audio/audio';
+    const audioPrefix = './audio/audio';
     const audioExtension = '.mp3';
+
+    // *** 新增一個集合，用於存放沒有音訊的投影片索引 ***
+    // 這裡需要你手動維護這個列表，或者在生成時自動檢查
+    // 假設第 2 頁和第 4 頁沒有音訊
+    const slidesWithoutAudio = new Set([2, 4]); // 示例：你可以根據實際情況修改此處
 
     let currentSlideIndex = 1; // 從第一張投影片開始 (索引從 1 開始)
     let isPlaying = false;
@@ -42,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
             playPauseBtn.style.cursor = "pointer";
             let playstatus = isPlaying ? '暫停' : '播放';
             playPauseBtn.setAttribute('title', playstatus);
-            playPauseBtn.innerHTML = isPlaying ? '<img src="/images/pause.svg" width="24" height="24">' : '<img src="/images/play.svg" width="24" height="24">';
+            playPauseBtn.innerHTML = isPlaying ? '<img src="../images/pause.svg" width="24" height="24">' : '<img src="../images/play.svg" width="24" height="24">';
         } else {
             playPauseBtn.disabled = true;
             playPauseBtn.style.cursor = "not-allowed";
             playPauseBtn.setAttribute('title','無音訊'); // 顯示無音訊或類似提示
-            playPauseBtn.innerHTML = '<img src="/images/mute.svg" width="24" height="24">'; 
+            playPauseBtn.innerHTML = '<img src="../images/mute.svg" width="24" height="24">'; 
         }
     }
 
@@ -77,19 +82,34 @@ document.addEventListener('DOMContentLoaded', () => {
         // 載入投影片圖片
         slideViewer.innerHTML = `<img src="${slideImagePrefix}${currentSlideIndex}${slideImageExtension}" alt="Slide ${currentSlideIndex}">`;
 
-        // 載入對應的音訊檔案
-        presentationAudio.src = `${audioPrefix}${currentSlideIndex}${audioExtension}`;
-        presentationAudio.load(); // 重新載入音訊
-        
         // 更新投影片資訊
         currentSlideInfo.textContent = `第 ${currentSlideIndex} / ${totalSlides} 頁`;
 
         // 更新縮圖活躍狀態
         updateActiveThumbnail();
 
+        // **主要更改點：在載入音訊之前檢查 slidesWithoutAudio 列表**
+        if (slidesWithoutAudio.has(currentSlideIndex)) {
+            // 這頁沒有音訊，直接禁用播放按鈕
+            presentationAudio.src = ''; // 清空 src，停止任何舊的載入
+            presentationAudio.pause(); // 停止播放
+            isPlaying = false;
+            updatePlayButtonState(false);
+            durationSpan.textContent = '0:00';
+            currentTimeSpan.textContent = '0:00';
+            seekBar.value = 0;
+            seekBar.max = 0;
+            console.log(`第 ${currentSlideIndex} 頁沒有音訊。`);
+            return; // 結束函數，不再嘗試載入音訊
+        }
+
+        // 如果有音訊，才嘗試載入和播放
+        presentationAudio.src = `${audioPrefix}${currentSlideIndex}${audioExtension}`;
+        presentationAudio.load(); // 重新載入音訊      
+        
         // 每次切換投影片時重置播放狀態
         playPauseBtn.setAttribute('title', '播放');
-        playPauseBtn.innerHTML = '<img src="/images/play.svg" width="24" height="24">';        
+        playPauseBtn.innerHTML = '<img src="../images/play.svg" width="24" height="24">';        
 
         // 應用儲存的音量值
         presentationAudio.volume = currentVolume; // 關鍵更改：將儲存的音量應用到當前音訊
@@ -106,15 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 新增的自動播放邏輯 ---
         // 嘗試播放音訊。如果音訊載入成功（loadedmetadata），它會自動播放
         // 如果載入失敗（error），它會被禁用
-        presentationAudio.play() .then(() => {
+        presentationAudio.play().then(() => {
                 // 自動播放成功
                 isPlaying = true;
                 updatePlayButtonState(true); // 啟用按鈕並更新為「暫停」
         }).catch(e => {
                 // 自動播放被阻止或音訊不存在/載入失敗
-                console.warn(`嘗試自動播放音訊 ${presentationAudio.src} 失敗:`, e);
+                console.warn(`自動播放音訊 ${presentationAudio.src} 失敗或被阻止:`, e);
                 isPlaying = false; // 確保播放狀態為 false
-                updatePlayButtonState(false); // 禁用按鈕
+                // 如果音訊本身有錯誤 (例如 404 已觸發 error 事件)，則按鈕應為 disabled
+                // 否則，如果只是政策阻止，按鈕應為 enabled 讓使用者手動點擊
+                if (presentationAudio.error && presentationAudio.error.code !== 0) { // 檢查非 MEDIA_ERR_ABORTED
+                    updatePlayButtonState(false); // 保持按鈕禁用
+                } else {
+                    updatePlayButtonState(true); // 如果是政策阻止，按鈕應可手動點擊
+                }
          });
         // --- 結束新增的自動播放邏輯 ---
     }
@@ -123,16 +149,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function togglePlayPause() {
         if (presentationAudio.paused || presentationAudio.ended) {
             presentationAudio.play().catch(e => {
-                console.error("播放音訊失敗:", e);
+                console.log("播放音訊失敗:", e);
                 // 如果自動播放被阻止，可以考慮給用戶提示
             });            
             playPauseBtn.setAttribute('title', '暫停');
-            playPauseBtn.innerHTML = '<img src="/images/pause.svg" width="24" height="24">';
+            playPauseBtn.innerHTML = '<img src="../images/pause.svg" width="24" height="24">';
             isPlaying = true;
         } else {
             presentationAudio.pause();
             playPauseBtn.setAttribute('title', '播放');
-            playPauseBtn.innerHTML = '<img src="/images/play.svg" width="24" height="24">';
+            playPauseBtn.innerHTML = '<img src="../images/play.svg" width="24" height="24">';
             isPlaying = false;
         }
     }
@@ -173,12 +199,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         }
-        console.log(`音訊載入錯誤 for ${presentationAudio.src}: ${errorMessage}`, e);
+        console.MediaError(`音訊載入錯誤 for ${presentationAudio.src}: ${errorMessage}`, e);
         
         // **核心改動：音訊載入失敗，明確禁用播放按鈕**
         isPlaying = false; // 確保播放狀態為 false
         updatePlayButtonState(false);
         durationSpan.textContent = '0:00'; // 清空時長顯示
+        currentTimeSpan.textContent = '0:00';
+        seekBar.value = 0;
         seekBar.max = 0; // 重置進度條最大值
     });
 
@@ -192,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     presentationAudio.addEventListener('ended', () => {
         isPlaying = false;
         playPauseBtn.setAttribute('title', '播放');
-        playPauseBtn.innerHTML = '<img src="/images/play.svg" width="24" height="24">';
+        playPauseBtn.innerHTML = '<img src="../images/play.svg" width="24" height="24">';
         seekBar.value = 0;
         currentTimeSpan.textContent = '0:00';
     });
@@ -251,28 +279,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // 監聽全螢幕狀態變化 (使用者按 ESC 鍵也會觸發)
     document.addEventListener('fullscreenchange', () => {
         if (document.fullscreenElement) {
-            fullscreenBtn.innerHTML = '<img src="/images/nonfullscreen.svg" width="24" height="24">';
+            fullscreenBtn.innerHTML = '<img src="../images/nonfullscreen.svg" width="24" height="24">';
             fullscreenBtn.setAttribute('title',"離開全螢幕");
         } else {
-            fullscreenBtn.innerHTML  = '<img src="/images/fullscreen.svg" width="24" height="24">';
+            fullscreenBtn.innerHTML  = '<img src="../images/fullscreen.svg" width="24" height="24">';
             fullscreenBtn.setAttribute('title',"全螢幕檢視");
         }
     });
     document.addEventListener('webkitfullscreenchange', () => { /* Safari */
         if (document.webkitFullscreenElement) {
-            fullscreenBtn.innerHTML = '<img src="/images/nonfullscreen.svg" width="24" height="24">';
+            fullscreenBtn.innerHTML = '<img src="../images/nonfullscreen.svg" width="24" height="24">';
             fullscreenBtn.setAttribute('title',"離開全螢幕");
         } else {
-            fullscreenBtn.innerHTML  = '<img src="/images/fullscreen.svg" width="24" height="24">';
+            fullscreenBtn.innerHTML  = '<img src="../images/fullscreen.svg" width="24" height="24">';
             fullscreenBtn.setAttribute('title',"全螢幕檢視");
         }
     });
     document.addEventListener('msfullscreenchange', () => { /* IE11 */
         if (document.msFullscreenElement) {
-            fullscreenBtn.innerHTML = '<img src="/images/nonfullscreen.svg" width="24" height="24">';
+            fullscreenBtn.innerHTML = '<img src="../images/nonfullscreen.svg" width="24" height="24">';
             fullscreenBtn.setAttribute('title',"離開全螢幕");
         } else {
-            fullscreenBtn.innerHTML  = '<img src="/images/fullscreen.svg" width="24" height="24">';
+            fullscreenBtn.innerHTML  = '<img src="../images/fullscreen.svg" width="24" height="24">';
             fullscreenBtn.setAttribute('title',"全螢幕檢視");
         }
     });
@@ -290,7 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
             img.alt = `Slide ${i} Thumbnail`;
 
             const span = document.createElement('span');
-            span.textContent = `第 ${i} 頁`;
+            // *** 縮圖頁碼顯示新增「無音訊」提示 ***
+            if (slidesWithoutAudio.has(i)) {
+                span.textContent = `第 ${i} 頁 (無音訊)`;
+                thumbItem.classList.add('no-audio'); // 為無音訊縮圖新增 CSS Class
+            } else {
+                span.textContent = `第 ${i} 頁`;
+            }
 
             thumbItem.appendChild(img);
             thumbItem.appendChild(span);
@@ -308,10 +342,12 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbnailSidebar.classList.toggle('open');
         document.body.classList.toggle('thumbnails-open'); // 為了讓主容器移動
         if (thumbnailSidebar.classList.contains('open')) {
-            toggleThumbnailsBtn.innerHTML = '<img src="/images/presentation.svg" width="24" height="24">';
+            toggleThumbnailsBtn.innerHTML = '<img src="../images/presentation.svg" width="24" height="24">';
+            toggleThumbnailsBtn.textContent = '隱藏簡報瀏覽';
             updateActiveThumbnail(); // 確保縮圖區塊打開時，當前頁的縮圖是活躍的
         } else {
-            toggleThumbnailsBtn.innerHTML = '<img src="/images/presentation.svg" width="24" height="24">';
+            toggleThumbnailsBtn.textContent = '簡報瀏覽';
+            toggleThumbnailsBtn.innerHTML = '<img src="../images/presentation.svg" width="24" height="24">';
         }
     }
 
