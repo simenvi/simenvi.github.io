@@ -211,7 +211,7 @@ body {
     background-size: cover; /* 讓圖片覆蓋整個滑塊區域 */
     background-repeat: no-repeat;
     background-position: center;
-    border: 1px solid rgba(0, 0, 0, 0.2); /* 可選：為滑塊添加邊框 */
+    border: 1px solid #007bff; /* 可選：為滑塊添加邊框 */
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
 }
 
@@ -232,7 +232,7 @@ body {
     background-size: cover; /* 讓圖片覆蓋整個滑塊區域 */
     background-repeat: no-repeat;
     background-position: center;
-    border: 1px solid rgba(0, 0, 0, 0.2); /* 可選：為滑塊添加邊框 */
+    border: 1px solid #007bff; /* 可選：為滑塊添加邊框 */
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
 }
 
