@@ -178,6 +178,88 @@ body {
     background: #007bff;
     cursor: pointer;
 }
+/* */
+#volume-bar {
+    width: 150px; /* 調整音量條的寬度 */
+    -webkit-appearance: none; /* 移除 WebKit 瀏覽器預設樣式 */
+    height: 8px; /* 軌道高度 */
+    background: #ddd; /* 軌道顏色 */
+    border-radius: 5px; /* 軌道圓角 */
+    outline: none; /* 移除聚焦時的藍色邊框 */
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+#volume-bar:hover {
+    opacity: 1;
+}
+
+/* --- 自定義音量條滑塊 (Thumb) 樣式 --- */
+/* WebKit 瀏覽器 (Chrome, Safari, Edge) */
+#volume-bar::-webkit-slider-thumb {
+    -webkit-appearance: none; /* 移除 WebKit 瀏覽器預設樣式 */
+    width: 18px; /* 滑塊寬度 */
+    height: 18px; /* 滑塊高度 */
+    /* background: #007bff; /* 原始的藍色背景，替換為圖片 */
+    border-radius: 50%; /* 圓形滑塊 */
+    cursor: grab; /* 拖動手勢 */
+    /* margin-top: -6px; /* 調整滑塊位置使其居中於軌道 */
+
+    /* *** 關鍵更改：使用圖片作為背景 *** */
+    background-image: url('../images/volume-thumb.svg'); /* <-- 替換為你的圖片路徑 */
+    background-size: cover; /* 讓圖片覆蓋整個滑塊區域 */
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* 可選：為滑塊添加邊框 */
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
+}
+
+#volume-bar::-webkit-slider-thumb:active {
+    cursor: grabbing;
+}
+
+/* Firefox 瀏覽器 */
+#volume-bar::-moz-range-thumb {
+    width: 18px; /* 滑塊寬度 */
+    height: 18px; /* 滑塊高度 */
+    /* background: #007bff; /* 原始的藍色背景，替換為圖片 */
+    border-radius: 50%; /* 圓形滑塊 */
+    cursor: grab; /* 拖動手勢 */
+
+    /* *** 關鍵更改：使用圖片作為背景 *** */
+    background-image: url('../images/volume-thumb.svg'); /* <-- 替換為你的圖片路徑 */
+    background-size: cover; /* 讓圖片覆蓋整個滑塊區域 */
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* 可選：為滑塊添加邊框 */
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
+}
+
+#volume-bar::-moz-range-thumb:active {
+    cursor: grabbing;
+}
+
+/* IE/Edge (舊版) - 如果需要支援，但現代 Edge 也使用 WebKit 引擎 */
+#volume-bar::-ms-thumb {
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/volume-thumb.svg');
+    background-size: cover;
+    border-radius: 50%;
+    cursor: grab;
+}
+
+/* 確保在全螢幕模式下，自定義滑塊的顏色不再被覆蓋 */
+.presentation-container:fullscreen .controls #volume-bar input[type="range"]::-webkit-slider-thumb {
+    background-image: url('../images/volume-thumb.svg'); /* 再次指定圖片 */
+    background-color: transparent; /* 清除可能存在的背景色 */
+}
+.presentation-container:fullscreen .controls #volume-bar input[type="range"]::-moz-range-thumb {
+    background-image: url('../images/volume-thumb.svg'); /* 再次指定圖片 */
+    background-color: transparent; /* 清除可能存在的背景色 */
+}
+/* */
 
 #current-slide-info {
     font-weight: bold;
