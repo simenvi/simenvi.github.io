@@ -206,7 +206,27 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeBar.addEventListener('input', () => {
         currentVolume = volumeBar.value / 100; // 關鍵更改：更新儲存的音量值
         presentationAudio.volume = currentVolume; // 將音量應用到當前播放的音訊
-    });
+    });    
+
+    // *** 新增的 JavaScript 邏輯 ***
+    function updateVolumeBarColor() {
+        // volumeBar.value 是 0-100
+        const percentage = volumeBar.value;
+        // 更新 CSS 變數 --volume-fill
+        volumeBar.style.setProperty('--volume-fill', `${percentage}%`);
+        
+        if (percentage > 70) {
+            volumeBar.classList.add('volume-high');
+        } else {
+            volumeBar.classList.remove('volume-high');
+        }
+    }
+
+    // 監聽音量條的 'input' 事件（當值改變時即時觸發）
+    volumeBar.addEventListener('input', updateVolumeBarColor);
+
+    // 確保在初始化時也檢查一次音量條的顏色
+    updateVolumeBarColor(); // 第一次載入時設定正確的顏色
 
     // 上一頁按鈕點擊事件
     prevSlideBtn.addEventListener('click', () => {

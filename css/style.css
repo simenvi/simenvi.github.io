@@ -178,16 +178,23 @@ body {
     background: #007bff;
     cursor: pointer;
 }
-/* */
+
+/* --- 自定義音量條滑塊 (Thumb) 樣式 --- */
 #volume-bar {
     width: 150px; /* 調整音量條的寬度 */
     -webkit-appearance: none; /* 移除 WebKit 瀏覽器預設樣式 */
     height: 8px; /* 軌道高度 */
-    background: #ddd; /* 軌道顏色 */
+    /* background: #ddd; /* 軌道顏色 */
+    --volume-fill: 0%; /* 預設值 */
+    background: linear-gradient(to right,
+        #007bff var(--volume-fill),  /* 藍色填充部分 */
+        #ddd var(--volume-fill)      /* 灰色剩餘部分 */
+    );
+    /* 確保初始值為 0，並在 JavaScript 中更新 */
     border-radius: 5px; /* 軌道圓角 */
     outline: none; /* 移除聚焦時的藍色邊框 */
     opacity: 0.7;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, background-color 0.3s ease; /* 添加 background-color 的過渡效果 */
     cursor: pointer;
 }
 
@@ -195,7 +202,6 @@ body {
     opacity: 1;
 }
 
-/* --- 自定義音量條滑塊 (Thumb) 樣式 --- */
 /* WebKit 瀏覽器 (Chrome, Safari, Edge) */
 #volume-bar::-webkit-slider-thumb {
     -webkit-appearance: none; /* 移除 WebKit 瀏覽器預設樣式 */
@@ -213,6 +219,30 @@ body {
     background-position: center;
     border: 1px solid #007bff; /* 可選：為滑塊添加邊框 */
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
+}
+
+/* --- 關鍵更改：當音量高於 70% 時的軌道顏色 --- */
+/* WebKit 瀏覽器 (Chrome, Safari, Edge) 的軌道填充色 */
+#volume-bar.volume-high {
+   background: linear-gradient(to right,
+        #dc3545 var(--volume-fill),  /* 紅色填充部分 */
+        #ddd var(--volume-fill)      /* 灰色剩餘部分 */
+   );
+}
+
+/* Firefox 瀏覽器 (軌道填充色) */
+#volume-bar::-moz-range-track {
+    background: #ddd; /* 預設軌道背景 */
+}
+
+#volume-bar::-moz-range-progress {
+    background-color: #007bff; /* 預設進度條顏色 */
+    height: 8px; /* 確保高度與軌道一致 */
+    border-radius: 4px; /* 確保圓角與軌道一致 */
+}
+
+#volume-bar.volume-high::-moz-range-progress {
+    background-color: #dc3545; /* 音量高於 70% 時的進度條顏色 */
 }
 
 #volume-bar::-webkit-slider-thumb:active {
@@ -251,6 +281,26 @@ body {
 }
 
 /* 確保在全螢幕模式下，自定義滑塊的顏色不再被覆蓋 */
+/* --- 確保全螢幕模式下也能應用這些顏色更改 --- */
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar {
+    /* 預設顏色和自定義圖片滑塊保持不變 */
+    background: #ddd; /* 預設軌道顏色 */
+}
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high {
+    /* WebKit 全螢幕下的高音量顏色 */
+    /*background: #dc3545; /* 簡化版：將整個軌道變為紅色 */
+    /* 或者使用更複雜的線性漸變模擬 */
+    background: linear-gradient(to right,
+                #dc3545 var(--volume-fill),
+                #ddd var(--volume-fill)
+               ); */
+}
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar::-moz-range-progress {
+    background-color: #007bff; /* 全螢幕預設進度條顏色 */
+}
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high::-moz-range-progress {
+    background-color: #dc3545; /* 全螢幕高音量進度條顏色 */
+}
 .presentation-container:fullscreen .controls #volume-bar input[type="range"]::-webkit-slider-thumb {
     background-image: url('../images/volume-thumb.svg'); /* 再次指定圖片 */
     background-color: transparent; /* 清除可能存在的背景色 */
@@ -259,7 +309,7 @@ body {
     background-image: url('../images/volume-thumb.svg'); /* 再次指定圖片 */
     background-color: transparent; /* 清除可能存在的背景色 */
 }
-/* */
+/* --- 自定義音量條滑塊 (Thumb) 樣式 --- */
 
 #current-slide-info {
     font-weight: bold;
