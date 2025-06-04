@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlideIndex = 1; // 從第一張投影片開始 (索引從 1 開始)
     let isPlaying = false;
     let currentVolume = volumeBar.value / 100; // 新增：初始化 currentVolume 為音量條的初始值
+    sessionStorage.setItem("volumeAlert", "N");
 
     // 格式化時間 (秒轉為分:秒)
     function formatTime(seconds) {
@@ -217,7 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (percentage > 70) {            
             volumeBar.setAttribute('title', '注意：音量大小');
-            alert('注意：調整音量大小');
+            
+            let volumeAlert = sessionStorage.getItem("volumeAlert");
+            if (volumeAlert == "N") {
+                alert('注意：調整音量大小');
+                sessionStorage.setItem("volumeAlert", "Y");
+            }
             volumeBar.classList.add('volume-high');
         } else {
             volumeBar.setAttribute('title', '音量大小');
