@@ -217,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (percentage > 70) {            
             volumeBar.setAttribute('title', '注意：音量大小');
+            alert('注意：調整音量大小');
             volumeBar.classList.add('volume-high');
         } else {
             volumeBar.setAttribute('title', '音量大小');
