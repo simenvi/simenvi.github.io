@@ -219,6 +219,7 @@ body {
     background-position: center;
     border: 1px solid #007bff; /* 可選：為滑塊添加邊框 */
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
+    transition: background-image 0.3s ease, background-color 0.3s ease; /* 添加過渡效果 */
 }
 
 /* --- 關鍵更改：當音量高於 70% 時的軌道顏色 --- */
@@ -264,10 +265,37 @@ body {
     background-position: center;
     border: 1px solid #007bff; /* 可選：為滑塊添加邊框 */
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
+    transition: background-image 0.3s ease, background-color 0.3s ease; /* 添加過渡效果 */
 }
 
 #volume-bar::-moz-range-thumb:active {
     cursor: grabbing;
+}
+
+/* WebKit 瀏覽器 - 高音量時的滑塊樣式 */
+#volume-bar.volume-high::-webkit-slider-thumb {
+    /* 方式一：替換為另一張圖片 (推薦有不同圖片時) */
+    /* background-image: url('../images/volume-thumb-high.png'); /* <-- 高音量滑塊圖片路徑 */
+
+    /* 方式二：如果只有一張圖片，直接改變滑塊的背景色 (圖片會疊加在顏色上，如果圖片是透明的) */
+    background-color: #dc3545; /* 例如，紅色 */
+
+    /* 如果圖片不透明，只改變陰影或邊框 */
+    box-shadow: 0 0 5px 3px rgba(220, 53, 69, 0.5); 
+    border-color: #dc3545;
+}
+
+/* Firefox 瀏覽器 - 高音量時的滑塊樣式 */
+#volume-bar.volume-high::-moz-range-thumb {
+    /* 方式一：替換為另一張圖片 (推薦有不同圖片時) */
+    /* background-image: url('../images/volume-thumb-high.png'); /* <-- 高音量滑塊圖片路徑 */
+
+    /* 方式二：如果只有一張圖片，直接改變滑塊的背景色 (圖片會疊加在顏色上，如果圖片是透明的) */
+    background-color: #dc3545; /* 例如，紅色 */
+
+    /* 如果圖片不透明，只改變陰影或邊框 */
+    box-shadow: 0 0 5px 3px rgba(220, 53, 69, 0.5); 
+    border-color: #dc3545; 
 }
 
 /* IE/Edge (舊版) - 如果需要支援，但現代 Edge 也使用 WebKit 引擎 */
@@ -307,6 +335,17 @@ body {
 }
 .presentation-container:fullscreen .controls #volume-bar input[type="range"]::-moz-range-thumb {
     background-image: url('../images/volume-thumb.svg'); /* 再次指定圖片 */
+    background-color: transparent; /* 清除可能存在的背景色 */
+}
+
+/* WebKit 全螢幕模式下的高音量滑塊 */
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high::-webkit-slider-thumb {
+    background-image: url('../images/volume-thumb-high.svg'); /* 再次指定高音量圖片 */
+    background-color: transparent; /* 清除可能存在的背景色 */
+}
+/* Firefox 全螢幕模式下的高音量滑塊 */
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high::-moz-range-thumb {
+    background-image: url('../images/volume-thumb-high.svg'); /* 再次指定高音量圖片 */
     background-color: transparent; /* 清除可能存在的背景色 */
 }
 /* --- 自定義音量條滑塊 (Thumb) 樣式 --- */
