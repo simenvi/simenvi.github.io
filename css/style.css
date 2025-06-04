@@ -312,7 +312,11 @@ body {
 /* --- 確保全螢幕模式下也能應用這些顏色更改 --- */
 .presentation-container:fullscreen .controls input[type="range"]#volume-bar {
     /* 預設顏色和自定義圖片滑塊保持不變 */
-    background: #ddd; /* 預設軌道顏色 */
+    /* background: #ddd; /* 預設軌道顏色 */
+    background: linear-gradient(to right,
+        #007bff var(--volume-fill),  /* 藍色填充部分 */
+        #ddd var(--volume-fill)      /* 灰色剩餘部分 */
+    );
 }
 .presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high {
     /* WebKit 全螢幕下的高音量顏色 */
@@ -321,13 +325,16 @@ body {
     background: linear-gradient(to right,
                 #dc3545 var(--volume-fill),
                 #ddd var(--volume-fill)
-               ); */
+    ); 
 }
 .presentation-container:fullscreen .controls input[type="range"]#volume-bar::-moz-range-progress {
     background-color: #007bff; /* 全螢幕預設進度條顏色 */
 }
-.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high::-moz-range-progress {
-    background-color: #dc3545; /* 全螢幕高音量進度條顏色 */
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high::-moz-range-progress {    
+    background: linear-gradient(to right,
+                #dc3545 var(--volume-fill),
+                #ddd var(--volume-fill)
+    ); 
 }
 .presentation-container:fullscreen .controls #volume-bar input[type="range"]::-webkit-slider-thumb {
     background-image: url('../images/volume-thumb.svg'); /* 再次指定圖片 */
