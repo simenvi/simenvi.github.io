@@ -227,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             volumeBar.classList.add('volume-high');
         } else {
             volumeBar.setAttribute('title', '音量大小');
+            sessionStorage.setItem("volumeAlert", "N");
             volumeBar.classList.remove('volume-high');
         }
     }
