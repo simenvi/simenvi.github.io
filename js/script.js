@@ -215,9 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // 更新 CSS 變數 --volume-fill
         volumeBar.style.setProperty('--volume-fill', `${percentage}%`);
         
-        if (percentage > 70) {
+        if (percentage > 70) {            
+            volumeBar.setAttribute('title', '注意：音量大小');
             volumeBar.classList.add('volume-high');
         } else {
+            volumeBar.setAttribute('title', '音量大小');
             volumeBar.classList.remove('volume-high');
         }
     }

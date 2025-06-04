@@ -225,14 +225,33 @@ body {
 /* --- 關鍵更改：當音量高於 70% 時的軌道顏色 --- */
 /* WebKit 瀏覽器 (Chrome, Safari, Edge) 的軌道填充色 */
 #volume-bar.volume-high {
+   /* background: #dc3545; */
+    width: 150px; /* 調整音量條的寬度 */
+    -webkit-appearance: none; /* 移除 WebKit 瀏覽器預設樣式 */
+    height: 8px; /* 軌道高度 */
+    /* background: #ddd; /* 軌道顏色 */
+    --volume-fill: 0%; /* 預設值 */
    background: linear-gradient(to right,
-        #dc3545 var(--volume-fill),  /* 紅色填充部分 */
-        #ddd var(--volume-fill)      /* 灰色剩餘部分 */
+        #dc3545 var(--volume-fill),
+        #ddd var(--volume-fill)
    );
+    /* 確保初始值為 0，並在 JavaScript 中更新 */
+    border-radius: 5px; /* 軌道圓角 */
+    outline: none; /* 移除聚焦時的藍色邊框 */
+    opacity: 0.7;
+    transition: opacity 0.2s, background-color 0.3s ease; /* 添加 background-color 的過渡效果 */
+    cursor: pointer;
+}
+
+#volume-bar.volume-high:hover {
+    opacity: 1;
 }
 
 /* Firefox 瀏覽器 (軌道填充色) */
 #volume-bar::-moz-range-track {
+    background: #ddd; /* 預設軌道背景 */
+}
+#volume-bar.volume-high::-moz-range-track {
     background: #ddd; /* 預設軌道背景 */
 }
 
@@ -244,6 +263,8 @@ body {
 
 #volume-bar.volume-high::-moz-range-progress {
     background-color: #dc3545; /* 音量高於 70% 時的進度條顏色 */
+    height: 8px; /* 確保高度與軌道一致 */
+    border-radius: 4px; /* 確保圓角與軌道一致 */
 }
 
 #volume-bar::-webkit-slider-thumb:active {
@@ -277,25 +298,52 @@ body {
     /* 方式一：替換為另一張圖片 (推薦有不同圖片時) */
     /* background-image: url('../images/volume-thumb-high.png'); /* <-- 高音量滑塊圖片路徑 */
 
-    /* 方式二：如果只有一張圖片，直接改變滑塊的背景色 (圖片會疊加在顏色上，如果圖片是透明的) */
-    background-color: #dc3545; /* 例如，紅色 */
+    -webkit-appearance: none; /* 移除 WebKit 瀏覽器預設樣式 */
+    width: 18px; /* 滑塊寬度 */
+    height: 18px; /* 滑塊高度 */
+    /* background: #007bff; /* 原始的藍色背景，替換為圖片 */
+    border-radius: 50%; /* 圓形滑塊 */
+    cursor: grab; /* 拖動手勢 */
+    /* margin-top: -6px; /* 調整滑塊位置使其居中於軌道 */
+
+    /* *** 關鍵更改：使用圖片作為背景 *** */
+    /* 方式二：如果只有一張圖片，直接改變滑塊的背景色 (圖片會疊加在顏色上，如果圖片是透明的) */    
+    background-image: url('../images/volume-thumb-high.svg');
+    background-color: #dc3545; 
+    background-size: cover; /* 讓圖片覆蓋整個滑塊區域 */
+    background-repeat: no-repeat;
+    background-position: center;
 
     /* 如果圖片不透明，只改變陰影或邊框 */
     box-shadow: 0 0 5px 3px rgba(220, 53, 69, 0.5); 
     border-color: #dc3545;
 }
 
+#volume-bar.volume-high::-webkit-slider-thumb:active {
+    cursor: grabbing;
+}
+
 /* Firefox 瀏覽器 - 高音量時的滑塊樣式 */
 #volume-bar.volume-high::-moz-range-thumb {
+    width: 18px; /* 滑塊寬度 */
+    height: 18px; /* 滑塊高度 */
+    /* background: #007bff; /* 原始的藍色背景，替換為圖片 */
+    border-radius: 50%; /* 圓形滑塊 */
+    cursor: grab; /* 拖動手勢 */
     /* 方式一：替換為另一張圖片 (推薦有不同圖片時) */
     /* background-image: url('../images/volume-thumb-high.png'); /* <-- 高音量滑塊圖片路徑 */
 
-    /* 方式二：如果只有一張圖片，直接改變滑塊的背景色 (圖片會疊加在顏色上，如果圖片是透明的) */
-    background-color: #dc3545; /* 例如，紅色 */
+    /* 方式二：如果只有一張圖片，直接改變滑塊的背景色 (圖片會疊加在顏色上，如果圖片是透明的) */    
+    background-image: url('../images/volume-thumb-high.svg');
+    background-color: #dc3545;
+    background-size: cover; /* 讓圖片覆蓋整個滑塊區域 */
+    background-repeat: no-repeat;
+    background-position: center;
 
     /* 如果圖片不透明，只改變陰影或邊框 */
-    box-shadow: 0 0 5px 3px rgba(220, 53, 69, 0.5); 
-    border-color: #dc3545; 
+    border: 1px solid #dc3545; /* 可選：為滑塊添加邊框 */
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); /* 可選：添加陰影 */
+    transition: background-image 0.3s ease, background-color 0.3s ease; /* 添加過渡效果 */
 }
 
 /* IE/Edge (舊版) - 如果需要支援，但現代 Edge 也使用 WebKit 引擎 */
@@ -307,12 +355,22 @@ body {
     border-radius: 50%;
     cursor: grab;
 }
+#volume-bar.volume-high::-ms-thumb {
+    width: 18px;
+    height: 18px;
+    background-image: url('../images/volume-thumb-high.svg');
+    border: 1px solid #dc3545; /* 可選：為滑塊添加邊框 */
+    background-size: cover;
+    border-radius: 50%;
+    cursor: grab;
+}
 
 /* 確保在全螢幕模式下，自定義滑塊的顏色不再被覆蓋 */
 /* --- 確保全螢幕模式下也能應用這些顏色更改 --- */
+/* Firefox 瀏覽器 (軌道填充色) */
 .presentation-container:fullscreen .controls input[type="range"]#volume-bar {
     /* 預設顏色和自定義圖片滑塊保持不變 */
-    /* background: #ddd; /* 預設軌道顏色 */
+    /* background: #007bff; /* 預設軌道顏色 */    
     background: linear-gradient(to right,
         #007bff var(--volume-fill),  /* 藍色填充部分 */
         #ddd var(--volume-fill)      /* 灰色剩餘部分 */
@@ -320,21 +378,25 @@ body {
 }
 .presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high {
     /* WebKit 全螢幕下的高音量顏色 */
-    /*background: #dc3545; /* 簡化版：將整個軌道變為紅色 */
+    /* background: #dc3545; /* 簡化版：將整個軌道變為紅色 */
     /* 或者使用更複雜的線性漸變模擬 */
+    background-image: url('../images/volume-thumb-high.svg');
     background: linear-gradient(to right,
-                #dc3545 var(--volume-fill),
-                #ddd var(--volume-fill)
+        #dc3545 var(--volume-fill),
+        #ddd var(--volume-fill)
     ); 
 }
+
 .presentation-container:fullscreen .controls input[type="range"]#volume-bar::-moz-range-progress {
     background-color: #007bff; /* 全螢幕預設進度條顏色 */
 }
-.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high::-moz-range-progress {    
-    background: linear-gradient(to right,
-                #dc3545 var(--volume-fill),
-                #ddd var(--volume-fill)
-    ); 
+.presentation-container:fullscreen .controls input[type="range"]#volume-bar.volume-high::-moz-range-progress {  
+    background-image: url('../images/volume-thumb-high.svg');  
+    background-color: #dc3545; /* 簡化版：將整個軌道變為紅色 */
+    /* background: linear-gradient(to right,
+        #dc3545 var(--volume-fill),
+        #ddd var(--volume-fill)
+    );  */
 }
 .presentation-container:fullscreen .controls #volume-bar input[type="range"]::-webkit-slider-thumb {
     background-image: url('../images/volume-thumb.svg'); /* 再次指定圖片 */
