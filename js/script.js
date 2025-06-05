@@ -217,11 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
         volumeBar.style.setProperty('--volume-fill', `${percentage}%`);
         
         if (percentage > 70) {            
-            volumeBar.setAttribute('title', '注意：音量大小');
+            volumeBar.setAttribute('title', '請注意音量！');
             
             let volumeAlert = sessionStorage.getItem("volumeAlert");
             if (volumeAlert == "N") {
-                alert('注意：調整音量大小');
+                alert('請注意音量！');
                 sessionStorage.setItem("volumeAlert", "Y");
             }
             volumeBar.classList.add('volume-high');
