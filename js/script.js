@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleThumbnailsBtn = document.getElementById('toggle-thumbnails-btn'); // 獲取縮圖切換按鈕
     const thumbnailSidebar = document.getElementById('thumbnail-sidebar'); // 獲取縮圖側邊欄
     const thumbnailsContainer = document.getElementById('thumbnails-container'); // 獲取縮圖容器
+    const snackbar = document.getElementById("snackbar");
 
 
     // 設定投影片總數和音訊檔案路徑
@@ -221,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let volumeAlert = sessionStorage.getItem("volumeAlert");
             if (volumeAlert == "N") {
-                alert('請注意音量！');
+                toastMsg();
                 sessionStorage.setItem("volumeAlert", "Y");
             }
             volumeBar.classList.add('volume-high');
@@ -230,6 +231,17 @@ document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.setItem("volumeAlert", "N");
             volumeBar.classList.remove('volume-high');
         }
+    }
+    
+    function toastMsg() {
+        // Get the snackbar DIV
+        // var x = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        snackbar.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
     }
 
     // 監聽音量條的 'input' 事件（當值改變時即時觸發）
@@ -307,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     // --- 全螢幕功能結束 ---
-
     // --- 縮圖預覽功能 ---
     function generateThumbnails() {
         for (let i = 1; i <= totalSlides; i++) {
