@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="zh_tw" class="orbit">
 <head>
@@ -1205,13 +1205,12 @@
 			<td>場次</td>
 			<td>講義、影片</td>
 		</tr>
-		<tr> <!-- 維護廠商：景丰科技股份有限公司  -->
+		<tr> <!-- 維護廠商：景丰科技股份有限公司：START -->
 			<td>一 20240621-TCCIP氣變整合平台服務</td>
 			<td>
         <ul>
-          <li><a href="20240621-TCCIP氣變整合平台服務(含音檔).pptx" target="_self">講義下載</a></li>
+          <!-- <li><a href="slide1/20240621-TCCIP氣變整合平台服務(含音檔).pptx" target="_self">講義下載</a></li>T -->
           <li><a href="slide1/index.html" target="_blank">影片連結 (另開視窗)</a></li>
-          <!-- <li><a href="" onclick="openFullscreenPopup('slide1/index.html');">影片連結 (另開視窗)</a></li> -->
         </ul>
 			</td>
 		</tr>
@@ -1219,12 +1218,11 @@
 			<td>二 20240621-運輸機關調適課程-黃國慶</td>
 			<td>
         <ul>
-          <li><a href="20240621-運輸機關調適課程-黃國慶(語音修正版本).pptx" target="_self">講義下載</a></li>
+          <!-- <li><a href="slide2/20240621-運輸機關調適課程-黃國慶(語音修正版本).pptx" target="_self">講義下載</a></li>T -->
           <li><a href="slide2/index.html" target="_blank">影片連結 (另開視窗)</a></li>
-          <!-- <li><a href="" onclick="openFullscreenPopup('slide2/index.html');">影片連結 (另開視窗)</a></li> -->
         </ul>
       </td>
-		</tr>
+		</tr> <!-- 維護廠商：景丰科技股份有限公司：END -->
 	</tbody>
 </table>
 
@@ -1472,28 +1470,5 @@
 </div>
   </div>
 </footer>
-<script> 
-    // 維護廠商：景丰科技股份有限公司 
-    function openFullscreenPopup(url) {
-        const features = 'fullscreen=yes,toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-      
-        const newWindow = window.open(url, '_blank', features);
-      
-        // 確保新視窗獲得焦點
-        if (newWindow) {
-            // newWindow.focus();
-            // 等待新視窗載入完成後再最大化
-            newWindow.addEventListener('load', () => {
-              newWindow.moveTo(0, 0);
-              newWindow.resizeTo(screen.availWidth, screen.availHeight);              
-              // newWindow.resizeTo(1400, 1050);
-            });
-
-            newWindow.focus();
-        } else {
-            alert("Popup 被瀏覽器封鎖了，請允許彈出視窗。");
-        }
-    } 
-</script>
 </body>
 </html>
