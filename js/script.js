@@ -360,9 +360,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleThumbnailsBtn.addEventListener('click', toggleThumbnails);
 
+    // --- 點擊投影片切換頁面功能 ---
+    slideViewer.addEventListener('click', (event) => {
+        // 獲取 slideViewer 的寬度
+        const viewerWidth = slideViewer.offsetWidth;
+        // 獲取點擊位置相對於 slideViewer 左邊緣的 X 座標
+        const clickX = event.offsetX;
+
+        // 如果點擊位置在左半邊 (0% 到 50%)
+        if (clickX < viewerWidth / 2) {
+            if (currentSlideIndex > 1) {
+                loadSlide(currentSlideIndex - 1);
+            }
+        }
+        // 如果點擊位置在右半邊 (50% 到 100%)
+        else {
+            if (currentSlideIndex < totalSlides) {
+                loadSlide(currentSlideIndex + 1);
+            }
+        }
+    });
+
     // 初始化載入第一頁投影片
     loadSlide(currentSlideIndex);
 
     // 生成所有縮圖
     generateThumbnails();
+    
+    // 確保在初始化時也檢查一次音量條的顏色
+    updateVolumeBarColor(); // 新增這一行確保初始音量條顏色正確
+
+    // 預設開啟全螢幕 (注意瀏覽器政策限制)
+    setTimeout(() => {
+        fullscreenBtn.click();
+    }, 100);
 });
