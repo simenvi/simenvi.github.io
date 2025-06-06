@@ -592,7 +592,7 @@ body.thumbnails-open .presentation-container {
   position: fixed; /* Sit on top of the screen */
   z-index: 1; /* Add a z-index if needed */
   /* left: 0; Center the snackbar */
-  bottom: 77px; /* 77px from the bottom */
+  bottom: 277px; /* 277px from the bottom */
   font-size: large;
   font-weight: bold;
 }
@@ -609,20 +609,20 @@ body.thumbnails-open .presentation-container {
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;}
-  to {bottom: 77px; opacity: 1;}
+  to {bottom: 277px; opacity: 1;}
 }
 
 @keyframes fadein {
   from {bottom: 0; opacity: 0;}
-  to {bottom: 77px; opacity: 1;}
+  to {bottom: 277px; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 77px; opacity: 1;}
+  from {bottom: 277px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-  from {bottom: 77px; opacity: 1;}
+  from {bottom: 277px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
