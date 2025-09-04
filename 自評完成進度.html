@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動式專案完成度報告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 
+    Chosen Palette: Warm Neutrals with Teal Accent 
+    Application Structure Plan: A dashboard layout featuring a main progress chart, a grid of interactive cards for each functional area, and a final section for recommendations. Clicking a card expands it to show a detailed status table. This structure provides a high-level overview with easy drill-down, improving on the static report's scannability. 
+    Visualization & Content Choices: 
+    - Overall Status (70%): Goal: Inform. Viz: Doughnut Chart (Chart.js/Canvas). Interaction: None. Justification: High visual impact for the most important metric.
+    - Functional Areas (e.g., 95%): Goal: Compare/Inform. Viz: Styled HTML cards with progress bars (divs). Interaction: Click to expand. Justification: Allows comparison between areas and hides complexity until requested.
+    - Feature Details (✅/⚠️/❌): Goal: Inform. Viz: HTML Table. Interaction: Revealed on card click. Justification: Standard, clear format for detailed data.
+    - Next Steps: Goal: Inform. Viz: Ordered HTML List. Interaction: None. Justification: Simple and clear for actionable items.
+    CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. 
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8f7f4; /* Warm neutral background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+        .details-table {
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-teal-800">專案管理系統完成度評估報告</h1>
+            <p class="text-gray-500 mt-2">互動式儀表板</p>
+        </header>
+
+        <main>
+            <section id="overall-status" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-12">
+                <h2 class="text-2xl font-bold text-center mb-6">一、 總體評估</h2>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-full md:w-1/3">
+                        <div class="chart-container">
+                            <canvas id="overallProgressChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <p class="text-lg leading-relaxed">
+                            目前系統已完成所有核心基礎建設，包含前後端分離架構、資料庫建置、API 設計、使用者登入與權限驗證。主要的核心功能如使用者管理、專案列表管理、專案詳情查閱等皆已實作。系統的擴展性良好，可在現有基礎上繼續開發剩餘功能。
+                        </p>
+                        <div class="mt-6 bg-teal-50 p-4 rounded-lg">
+                            <span class="font-bold text-teal-700">總體完成度預估：</span>
+                            <span class="text-2xl font-bold text-teal-600">70%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="functional-areas">
+                <h2 class="text-2xl font-bold text-center mb-8">二、 各項功能完成度細節</h2>
+                <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+            </section>
+
+            <section id="next-steps" class="mt-12 bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold text-center mb-6">三、 下一步建議</h2>
+                <ol id="recommendations-list" class="list-decimal list-inside space-y-4 text-lg">
+                </ol>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 text-gray-400">
+            <p>報告生成日期：2025-08-22</p>
+        </footer>
+    </div>
+
+    <script>
+        const reportData = {
+            overallPercentage: 70,
+            functionalAreas: [
+                {
+                    title: "使用者權限管理",
+                    percentage: 95,
+                    details: [
+                        { item: "各角色權限劃分", status: "✅ 已完成", note: "後端 API 已嚴格依照 admin, manager, user, dept_head, pm 五種角色的權限規則進行資料過濾與操作限制。" },
+                        { item: "Admin 擁有所有權限", status: "✅ 已完成", note: "已實作完整的使用者管理 (CRUD) 功能，並僅對 admin 開放。" },
+                        { item: "PM/部門主管權限", status: "✅ 已完成", note: "後端 API 能正確過濾出僅屬於該部門或該 PM 的專案。" },
+                        { item: "新增專案時自動填入", status: "✅ 已完成", note: "前端在新增專案時，會根據登入者的角色（PM/部門主管）自動填入並鎖定對應欄位。" },
+                        { item: "財務資訊瀏覽權限", status: "✅ 已完成", note: "後端 API 會根據使用者的 `can_view_financials` 旗標，決定是否回傳金額相關的敏感資訊。" },
+                        { item: "管理財務瀏覽權限的 UI", status: "⚠️ 待完成", note: "目前僅能透過後端 API 或直接修改資料庫來設定使用者的財務瀏覽權限，使用者管理頁面尚未加入此設定的 UI。" }
+                    ]
+                },
+                {
+                    title: "專案計畫管理",
+                    percentage: 75,
+                    details: [
+                        { item: "專案基本資料管理", status: "✅ 已完成", note: "前後端皆已實作完整的 CRUD 功能。" },
+                        { item: "委外下包資料管理", status: "✅ 已完成", note: "前後端皆已實作完整的 CRUD 功能。" },
+                        { item: "各項費用明細管理", status: "✅ 已完成", note: "請款、扣款、保證金、其他支出的前後端 CRUD 功能皆已完成。" },
+                        { item: "費用總額動態計算", status: "✅ 已完成", note: "後端 API 能即時計算並回傳所有費用總額與比例，前端也能正確顯示。" },
+                        { item: "合約金額變更紀錄", status: "⚠️ 待完成", note: "後端已有對應的 API，但前端專案詳情頁尚未加入「新增合約變更」的操作介面。" },
+                        { item: "下包付款紀錄管理", status: "❌ 未完成", note: "這是費用明細中最主要的未實作項目。目前系統尚無法針對每一筆委外合約進行付款紀錄的新增與管理。" }
+                    ]
+                },
+                {
+                    title: "資料查詢及匯出",
+                    percentage: 80,
+                    details: [
+                        { item: "專案列表查詢", status: "✅ 已完成", note: "專案列表頁面已具備依專案名稱、編號進行篩選查詢的功能。" },
+                        { item: "專案費用彙整表匯出", status: "✅ 已完成", note: "已實作依條件篩選並將專案費用彙整表匯出為 Excel 的功能。" },
+                        { item: "專案追蹤進度彙整表", status: "❌ 未完成", note: "由於專案進度追蹤功能尚未完成，因此也未實作對應的報表匯出功能。" }
+                    ]
+                },
+                {
+                    title: "圖表與報表",
+                    percentage: 90,
+                    details: [
+                        { item: "季報、年報彙整表", status: "✅ 已完成", note: "「報表分析」頁面已能根據年份顯示年度彙整表。" },
+                        { item: "資料視覺化圖表", status: "✅ 已完成", note: "已使用 Chart.js 實作季度營收長條圖與部門專案佔比圓餅圖。" }
+                    ]
+                },
+                {
+                    title: "專案進度追蹤",
+                    percentage: 30,
+                    details: [
+                        { item: "後端 API 與時間限制", status: "✅ 已完成", note: "後端已建立 `progress` 相關的 API，並包含僅在特定時間（每季末）才能填寫的邏輯。" },
+                        { item: "前端填寫/管理介面", status: "❌ 未完成", note: "專案詳情頁中，尚未加入一個頁籤或區塊來讓使用者填寫、查看或管理每季的進度回報。" },
+                        { item: "進度百分比計算與顯示", status: "❌ 未完成", note: "後端尚未實作計算「累加進度」、「當年度完工進度」等指標的 API；前端也無對應的顯示區塊。" }
+                    ]
+                },
+                {
+                    title: "帳款收支管理 & 基本資料管理",
+                    percentage: 50,
+                    details: [
+                        { item: "獨立的發票/付款作業", status: "❌ 未完成", note: "需求文件中提到的獨立「發票開立作業」與「下包付款作業」模組尚未建立。目前相關紀錄僅能於各專案詳情頁中管理。" },
+                        { item: "基本資料管理後端", status: "✅ 已完成", note: "後端已為部門、業主、下包廠商建立完整的 CRUD API。" },
+                        { item: "基本資料管理前端", status: "❌ 未完成", note: "前端尚未建立一個獨立的「基本資料管理」頁面，讓管理者可以集中維護所有部門、業主與廠商的資料。" }
+                    ]
+                }
+            ],
+            recommendations: [
+                "完成專案進度追蹤：這是目前功能缺口較大的部分，建議優先在專案詳情頁加入進度回報的前端介面。",
+                "實作下包付款紀錄：補齊費用明細中最後一塊缺失的功能，讓委外管理更完整。",
+                "建立基本資料管理頁面：提供一個讓管理者能方便維護部門、業主、廠商資料的介面。",
+                "完善細節：例如加入合約變更的前端 UI、在使用者管理頁面加入財務瀏覽權限的開關等。"
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardsContainer = document.getElementById('cards-container');
+            const recommendationsList = document.getElementById('recommendations-list');
+
+            const statusColors = {
+                '✅': 'text-green-600',
+                '⚠️': 'text-yellow-600',
+                '❌': 'text-red-600'
+            };
+
+            reportData.functionalAreas.forEach((area, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl shadow-lg p-6 cursor-pointer transform hover:-translate-y-1 transition-transform duration-300';
+                card.dataset.index = index;
+
+                let detailsHtml = area.details.map(d => `
+                    <tr class="border-t">
+                        <td class="py-3 pr-3 text-gray-700">${d.item}</td>
+                        <td class="py-3 pr-3 font-medium ${statusColors[d.status.substring(0, 1)] || ''}">${d.status}</td>
+                        <td class="py-3 text-gray-500 text-sm">${d.note}</td>
+                    </tr>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-teal-700">${area.title}</h3>
+                        <span class="text-2xl font-bold text-teal-600">${area.percentage}%</span>
+                    </div>
+                    <div class="mt-4 bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-teal-500 h-2.5 rounded-full" style="width: ${area.percentage}%"></div>
+                    </div>
+                    <div class="details-table mt-4" style="max-height: 0px;">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 pr-3 font-semibold">需求項目</th>
+                                    <th class="py-2 pr-3 font-semibold">狀態</th>
+                                    <th class="py-2 font-semibold">備註</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${detailsHtml}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                cardsContainer.appendChild(card);
+            });
+
+            cardsContainer.addEventListener('click', (e) => {
+                const card = e.target.closest('[data-index]');
+                if (card) {
+                    const details = card.querySelector('.details-table');
+                    const isExpanded = details.style.maxHeight !== '0px';
+
+                    document.querySelectorAll('.details-table').forEach(d => d.style.maxHeight = '0px');
+                    
+                    if (!isExpanded) {
+                        details.style.maxHeight = details.scrollHeight + 'px';
+                    }
+                }
+            });
+
+            reportData.recommendations.forEach(rec => {
+                const li = document.createElement('li');
+                li.className = "bg-stone-100 p-3 rounded-md";
+                li.textContent = rec;
+                recommendationsList.appendChild(li);
+            });
+
+            const ctx = document.getElementById('overallProgressChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [reportData.overallPercentage, 100 - reportData.overallPercentage],
+                        backgroundColor: ['#14B8A6', '#F0F0F0'],
+                        borderColor: ['#FFFFFF'],
+                        borderWidth: 4,
+                        hoverBorderColor: '#FFFFFF'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '75%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                },
+                plugins: [{
+                    id: 'centerText',
+                    beforeDraw: function(chart) {
+                        const width = chart.width,
+                            height = chart.height,
+                            ctx = chart.ctx;
+                        ctx.restore();
+                        const fontSize = (height / 114).toFixed(2);
+                        ctx.font = `bold ${fontSize}em sans-serif`;
+                        ctx.textBaseline = 'middle';
+                        ctx.fillStyle = '#0F766E';
+
+                        const text = reportData.overallPercentage + '%',
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                            textY = height / 2;
+
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }]
+            });
+        });
+    </script>
+</body>
+</html>
